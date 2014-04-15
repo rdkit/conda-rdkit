@@ -1,0 +1,33 @@
+package:
+  name: rdkit
+  version: 2014.03.1pre
+
+source:
+  git_url: https://github.com/rdkit/rdkit.git
+  git_branch: master
+
+build:
+  number: 1 
+
+requirements:
+  build:
+    - cmake [unix]
+    - requests
+    - boost
+    - python
+    - numpy
+    - pil [py2k]
+    - freetype
+    - py2cairo [linux and py2k]
+  run:
+    - boost
+    - python
+    - numpy
+
+test:
+  imports:
+    - rdkit
+
+about:
+  home: http://rdkit.org
+  license: BSD

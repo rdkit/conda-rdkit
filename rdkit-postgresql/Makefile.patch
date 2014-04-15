@@ -1,0 +1,32 @@
+diff --git Code/PgSQL/rdkit/Makefile Code/PgSQL/rdkit/Makefile
+index f02e88d..2def1df 100644
+--- Code/PgSQL/rdkit/Makefile
++++ Code/PgSQL/rdkit/Makefile
+@@ -1,10 +1,10 @@
+-RDKIT=$(RDBASE)
+-USE_INCHI=0
+-STATIC_LINK=1
++RDKIT=$(PREFIX)
++USE_INCHI=1
++STATIC_LINK=0
+ 
+ ifeq ($(USE_INCHI),1)
+   INCHILIBS=-lRDInchiLib -lInchi
+-  INCHIFLAGS=-I${RDKIT}/External -DBUILD_INCHI_SUPPORT  
++  INCHIFLAGS=-DBUILD_INCHI_SUPPORT  
+   INCHIREGRESS=inchi
+ endif
+ 
+@@ -17,11 +17,8 @@ else
+ endif
+ 
+ SHLIB_LINK += -pthread
+-ifndef BOOSTHOME
+-  BOOSTHOME=/usr/local/include
+-endif
+ 
+-PG_CPPFLAGS = -I${BOOSTHOME} -I${RDKIT}/Code -DRDKITVER='"007200"' ${INCHIFLAGS} #-DUSE_BUILTIN_POPCOUNT -msse4.2
++PG_CPPFLAGS = -I${PREFIX}/include -I${PREFIX}/include/rdkit -DRDKITVER='"007200"' ${INCHIFLAGS} #-DUSE_BUILTIN_POPCOUNT -msse4.2
+ 
+ CPLUSPLUSFLAGS = $(filter-out -fexcess-precision=standard -Wmissing-prototypes -Wdeclaration-after-statement, $(CFLAGS))
+ CPLUSPLUSFLAGS += -Wno-unused-function 
