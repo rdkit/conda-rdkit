@@ -14,7 +14,7 @@ mkdir -vp ${PREFIX}/bin;
 
 ./bootstrap.sh --prefix="${PREFIX}/";
 
-sed -i 's/^using python.*;//' ./project-config.jam
+sed --in-place='.bak' 's/^using python.*;//' ./project-config.jam
 
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
 
