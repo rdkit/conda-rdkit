@@ -12,6 +12,7 @@ cmake \
     -D AVALONTOOLS_DIR=$SRC_DIR/External/AvalonTools/src/SourceDistribution \
     -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
     -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D Python_ADDITIONAL_VERSIONS=${PY_VER} \
     -D PYTHON_EXECUTABLE=$PYTHON \
     -D PYTHON_NUMPY_INCLUDE_PATH=$SP_DIR/numpy/core/include \
     -D BOOST_ROOT=$PREFIX -D Boost_NO_SYSTEM_PATHS=ON \
