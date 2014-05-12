@@ -1,7 +1,7 @@
 Conda recipes for the RDKit
 ###########################
 
-This repository provides the recipes for building binary RDKit packages to be used with the Anaconda Python distribution or other conda environments.
+This repository provides the recipes for building binary `RDKit <http://rdkit.org>`_ packages to be used with the Anaconda Python distribution or other conda environments.
 
 Conda
 =====
@@ -11,7 +11,7 @@ Conda is an open-source, cross-platform, software package manager. It supports t
 How to get conda
 ----------------
 
-The easiest way to get Conda is having it installed as part of the Anaconda Python distribution. A possible (but a bit more complex to use) alternative is provided with the smaller and more self-contained Miniconda. The conda source code repository is available on GitHub and additional documentation is provided on the project website http://conda.pydata.org/ 
+The easiest way to get Conda is having it installed as part of the `Anaconda Python distribution <http://docs.continuum.io/anaconda/install.html>`_. A possible (but a bit more complex to use) alternative is provided with the smaller and more self-contained `Miniconda <conda.pydata.org/miniconda.html>`_. The conda source code repository is available on `github <https://github.com/conda>`_ and additional documentation is provided by the project `website <http://conda.pydata.org/>`_. 
 
 How to build the packages
 =========================
@@ -44,7 +44,7 @@ A git client is optionally required for building the version of the recipes whic
 Building the packages
 ---------------------
 
-The latest stable version of these recipes (building the most recent RDKit release) may be downloaded from the following link https://github.com/rdkit/conda-rdkit/archive/master.zip. Alternatively, users may directly clone this repository from github:
+The latest stable version of these recipes (building the most recent RDKit release) may be downloaded from the following `link <https://github.com/rdkit/conda-rdkit/archive/master.zip>`_. Alternatively, users may directly clone this repository from github:
 
   $ git clone https://github.com/rdkit/conda-rdkit.git
 
@@ -102,7 +102,7 @@ A new environment will be created including the required dependencies:
   
   Proceed ([y]/n)? y
 
-Finally, the new environment must be activated, so that the corresponding python interpreter becomes available within the same shell:
+Finally, the new environment must be activated, so that the corresponding python interpreter becomes available in the same shell:
 
   $ source activate my-rdkit-env
 
