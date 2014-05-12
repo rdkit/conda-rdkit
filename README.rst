@@ -19,7 +19,7 @@ How to build the packages
 Software and system requirements
 --------------------------------
 
-A recent version of conda must be installed and included in the user's PATH. If not already included by the available anaconda/miniconda installation, the 'conda build' subcommand must also be installed: 
+A recent version of conda must be installed and included in the user's PATH. If not already included by the available anaconda/miniconda installation, the 'conda build' subcommand must also be installed:: 
 
   $ conda install conda-build
 
@@ -28,7 +28,7 @@ The recipes provided with this repository perform the automated download and man
 Linux
 .....
 
-If not already installed as a dependency of the conda-build package, the patchelf utility mush be also present. It can be available with the operating system or it may be installed inside the conda root environment with the following command:
+If not already installed as a dependency of the conda-build package, the patchelf utility mush be also present. It can be available with the operating system or it may be installed inside the conda root environment with the following command::
 
   $ conda install patchelf
 
@@ -44,7 +44,7 @@ A git client is optionally required for building the version of the recipes whic
 Building the packages
 ---------------------
 
-The latest stable version of these recipes (building the most recent RDKit release) may be downloaded from the following `link <https://github.com/rdkit/conda-rdkit/archive/master.zip>`_. Alternatively, users may directly clone this repository from github:
+The latest stable version of these recipes (building the most recent RDKit release) may be downloaded from the following `link <https://github.com/rdkit/conda-rdkit/archive/master.zip>`_. Alternatively, users may directly clone this repository from github::
 
   $ git clone https://github.com/rdkit/conda-rdkit.git
 
@@ -54,12 +54,12 @@ All commands in the described build procedure are assumed to run in a shell or w
 
 The build process doesn't require activating and configuring a dedicated python environment. The build commands may run within the root environment and conda will take care of automating all of the process, starting from downloading the source code and proceeding to unpacking it into a suitable working directory, creating the necessary build and test environments with the required dependencies, compiling, testing and finally storing the resulting binary packages into a local directory.
 
-If all of the necessary conditions are satisfied, building the RDKit may then reduce to running the following two commands:
+If all of the necessary conditions are satisfied, building the RDKit may then reduce to running the following two commands::
 
   $ conda build boost
   $ conda build rdkit
 
-For the linux platform an additional recipe is available, supporting the build of the postgresql cartridge:
+For the linux platform an additional recipe is available, supporting the build of the postgresql cartridge::
 
   $ conda build rdkit-postgresql
 
@@ -68,18 +68,18 @@ Conda will store the produced packages into a local repository/channel, by defau
 Installing and using the packages
 ---------------------------------
 
-Creating a new conda environment with the RDKit installed using these  packages requires one single command similar to the following:
+Creating a new conda environment with the RDKit installed using these  packages requires one single command similar to the following::
 
   $ conda create -c <channel-url> -n my-rdkit-env rdkit
 
 where '<channel-url>' is to be replaced with the URL of the package repository where the packages have been placed for distribution.
 
-If the packages have been built locally and are still available inside the user's conda build directories, then specifying the '--use-local' option should be sufficient and configuring a distribution channel is not necessary:
+If the packages have been built locally and are still available inside the user's conda build directories, then specifying the '--use-local' option should be sufficient and configuring a distribution channel is not necessary::
 
   $ conda create --use-local -n my-rdkit-env rdkit
  
-A new environment will be created including the required dependencies:
- 
+A new environment will be created including the required dependencies::
+
   Fetching package metadata: ...
   Solving package specifications: .
   Package plan for installation in environment /home/ric/anaconda/envs/my-rdkit-env:
@@ -102,11 +102,11 @@ A new environment will be created including the required dependencies:
   
   Proceed ([y]/n)? y
 
-Finally, the new environment must be activated, so that the corresponding python interpreter becomes available in the same shell:
+Finally, the new environment must be activated, so that the corresponding python interpreter becomes available in the same shell::
 
   $ source activate my-rdkit-env
 
-Windows users will use a slightly different command:
+Windows users will use a slightly different command::
 
   C:\> activate my-rdkit-env
 
