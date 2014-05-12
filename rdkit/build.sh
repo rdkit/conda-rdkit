@@ -21,6 +21,8 @@ cmake \
 
 make
 
-RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib;$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
+if [[ `uname` == 'Linux' ]]; then
+    RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib;$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
+fi
 
 make install
