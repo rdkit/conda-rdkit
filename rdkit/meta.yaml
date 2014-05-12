@@ -1,10 +1,10 @@
 package:
   name: rdkit
-  version: 2014.03.1pre
+  version: 2014.03.1
 
 source:
-  git_url: https://github.com/rdkit/rdkit.git
-  git_branch: master
+  fn: Release_2014_03_1.zip
+  url: https://github.com/rdkit/rdkit/archive/Release_2014_03_1.zip
 
 build:
   number: 1 
