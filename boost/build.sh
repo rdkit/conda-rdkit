@@ -19,6 +19,8 @@ cd $SRC_DIR
 export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared"
 export CXXFLAGS="${CFLAGS}"
 
+mkdir -vp ${PREFIX}/bin;
+
 ./bootstrap.sh --prefix="${PREFIX}/";
 
 sed -i'.bak' -e's/^using python.*;//' ./project-config.jam
