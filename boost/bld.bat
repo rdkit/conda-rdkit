@@ -4,5 +4,6 @@ set BOOSTDIR=%SRC_DIR%\boost
 
 xcopy "%BOOSTDIR%\boost" "%LIBRARY_INC%\boost" /s /e /i
 
-xcopy "%BOOSTDIR%"\lib%ARCH%-msvc-10.0 "%LIBRARY_LIB%" /s /e
+xcopy "%BOOSTDIR%"\lib%ARCH%-msvc-10.0\*.lib "%LIBRARY_LIB%"
+xcopy "%BOOSTDIR%"\lib%ARCH%-msvc-10.0\*.dll "%PREFIX%"
 

@@ -23,7 +23,6 @@ nmake
 
 rem extend the environment settings in preparation to tests
 set RDBASE=%SRC_DIR%
-set PATH=%LIBRARY_LIB%;%PATH%
 set PYTHONPATH=%RDBASE%
 
 nmake test

@@ -12,7 +12,7 @@ source:
     url: http://download.sourceforge.net/project/boost/boost-binaries/1.55.0-build2/boost_1_55_0-msvc-10.0-32.exe [win32]
     
 build:
-    number: 1
+    number: 2
 
 requirements:
     build:
