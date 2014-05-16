@@ -1,23 +1,23 @@
 package:
   name: rdkit-postgresql
-  version: 2014.03.1
+  version: 2014.09.1pre
 
 source:
-  fn: Release_2014_03_1.zip
-  url: https://github.com/rdkit/rdkit/archive/Release_2014_03_1.zip
+  git_url: https://github.com/rdkit/rdkit.git
+  git_branch: master
   patches:
     - Makefile.patch
     - adapter.cpp.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
-    - rdkit 2014.03.1
+    - rdkit 2014.09.1pre
     - postgresql
   run:
-    - rdkit 2014.03.1
+    - rdkit 2014.09.1pre
     - postgresql
 
 about:
