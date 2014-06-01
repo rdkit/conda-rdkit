@@ -7,15 +7,6 @@
 # Build dependencies:
 # - bzip2-devel
 
-#Can't work out how to get patches to be applied by conda, hack around for now
-
-echo "Applying patches"
-cd $SRC_DIR/boost/atomic/detail
-patch < $RECIPE_DIR/e4bde20f.patch
-patch < $RECIPE_DIR/6bb71fdd.patch
-echo "Patches applied"
-cd $SRC_DIR
-
 export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared"
 export CXXFLAGS="${CFLAGS}"
 
