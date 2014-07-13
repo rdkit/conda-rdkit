@@ -4,7 +4,8 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_branch: master
+  git_branch: master [py2k]
+  git_branch: python3-support [py3k]
 
 build:
   number: 0 
@@ -17,6 +18,7 @@ requirements:
     - python
     - numpy
     - pil [py2k]
+    - pillow [py3k]
     - freetype
     - py2cairo [linux and py2k]
   run:
