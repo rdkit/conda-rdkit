@@ -8,7 +8,7 @@ source:
   git_branch: python3-support [py3k]
 
 build:
-  number: 0 
+  # number: 0 
 
 requirements:
   build:
