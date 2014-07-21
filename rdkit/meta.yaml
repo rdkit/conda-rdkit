@@ -4,8 +4,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_branch: master [py2k]
-  git_branch: python3-support [py3k]
+  git_branch: master
 
 build:
   # number: 0 
