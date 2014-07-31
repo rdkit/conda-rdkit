@@ -11,7 +11,7 @@ Conda is an open-source, cross-platform, software package manager. It supports t
 How to get conda
 ----------------
 
-The easiest way to get Conda is having it installed as part of the `Anaconda Python distribution <http://docs.continuum.io/anaconda/install.html>`_. A possible (but a bit more complex to use) alternative is provided with the smaller and more self-contained `Miniconda <conda.pydata.org/miniconda.html>`_. The conda source code repository is available on `github <https://github.com/conda>`_ and additional documentation is provided by the project `website <http://conda.pydata.org/>`_. 
+The easiest way to get Conda is having it installed as part of the `Anaconda Python distribution <http://docs.continuum.io/anaconda/install.html>`_. A possible (but a bit more complex to use) alternative is provided with the smaller and more self-contained `Miniconda <http://conda.pydata.org/miniconda.html>`_. The conda source code repository is available on `github <https://github.com/conda>`_ and additional documentation is provided by the project `website <http://conda.pydata.org/>`_. 
 
 How to build the packages
 =========================
