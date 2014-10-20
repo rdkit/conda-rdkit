@@ -4,10 +4,7 @@ import shutil
 
 from utils import download_file
 
-INCHI_URL = (
-    'http://www.inchi-trust.org/fileadmin/user_upload/software/'
-    'inchi-v1.04/INCHI-1-API.ZIP'
-    )
+INCHI_URL = 'http://www.inchi-trust.org/wp/wp-content/uploads/2014/06/INCHI-1-API.zip'
 
 inchi_zipfile = download_file(INCHI_URL)
 
