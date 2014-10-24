@@ -11,7 +11,8 @@ build:
 
 requirements:
   build:
-    - cmake [unix]
+    - cmake [linux]
+    - cmake <=2.8.9 [osx]
     - requests
     - boost
     - python
