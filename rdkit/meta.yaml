@@ -1,22 +1,24 @@
 package:
   name: rdkit
-  version: 2014.03.1
+  version: 2014.09.1pre
 
 source:
-  fn: Release_2014_03_1.zip
-  url: https://github.com/rdkit/rdkit/archive/Release_2014_03_1.zip
+  git_url: https://github.com/rdkit/rdkit.git
+  git_branch: master
 
 build:
-  number: 2 
+  number: 0 
 
 requirements:
   build:
-    - cmake [unix]
+    - cmake [linux]
+    - cmake <=2.8.9 [osx]
     - requests
     - boost
     - python
     - numpy
     - pil [py2k]
+    - pillow [py3k]
     - freetype
     - py2cairo [linux and py2k]
   run:

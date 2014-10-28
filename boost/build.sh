@@ -10,7 +10,10 @@
 export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared"
 export CXXFLAGS="${CFLAGS}"
 
-mkdir -vp ${PREFIX}/bin;
+export BZIP2_INCLUDE="${PREFIX}/include"
+export BZIP2_LIBPATH="${PREFIX}/lib"
+export ZLIB_INCLUDE="${PREFIX}/include"
+export ZLIB_LIBPATH="${PREFIX}/lib"
 
 ./bootstrap.sh --prefix="${PREFIX}/";
 
