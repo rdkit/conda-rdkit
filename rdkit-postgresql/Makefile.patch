@@ -1,32 +1,45 @@
 diff --git Code/PgSQL/rdkit/Makefile Code/PgSQL/rdkit/Makefile
-index f02e88d..2def1df 100644
+index 393a101..f9e116f 100644
 --- Code/PgSQL/rdkit/Makefile
 +++ Code/PgSQL/rdkit/Makefile
-@@ -1,10 +1,10 @@
+@@ -8,18 +8,20 @@
+ # -------------------------
+ 
+ 
 -RDKIT=$(RDBASE)
--USE_INCHI=0
--STATIC_LINK=1
+-
 +RDKIT=$(PREFIX)
 +USE_INCHI=1
++USE_AVALON=1
 +STATIC_LINK=0
  
  ifeq ($(USE_INCHI),1)
    INCHILIBS=-lRDInchiLib -lInchi
 -  INCHIFLAGS=-I${RDKIT}/External -DBUILD_INCHI_SUPPORT  
-+  INCHIFLAGS=-DBUILD_INCHI_SUPPORT  
++  INCHIFLAGS=-DBUILD_INCHI_SUPPORT
    INCHIREGRESS=inchi
+   USE_THREADS=1
+ endif
+ ifeq ($(USE_AVALON),1)
+   AVALONLIBS=-lAvalonLib -lavalon_clib
+-  AVALONFLAGS=-I${RDKIT}/External -DBUILD_AVALON_SUPPORT  
++  AVALONFLAGS=-DBUILD_AVALON_SUPPORT
+   AVALONREGRESS=avalon
  endif
  
-@@ -17,11 +17,8 @@ else
+@@ -39,14 +41,11 @@ else
+   SHLIB_LINK += -L${RDKIT}/lib $(addsuffix _static,${RDKLIBS})
  endif
  
- SHLIB_LINK += -pthread
 -ifndef BOOSTHOME
--  BOOSTHOME=/usr/local/include
+-  BOOSTHOME=/usr/local
 -endif
+ SHLIB_LINK += -pthread
  
--PG_CPPFLAGS = -I${BOOSTHOME} -I${RDKIT}/Code -DRDKITVER='"007200"' ${INCHIFLAGS} #-DUSE_BUILTIN_POPCOUNT -msse4.2
-+PG_CPPFLAGS = -I${PREFIX}/include -I${PREFIX}/include/rdkit -DRDKITVER='"007200"' ${INCHIFLAGS} #-DUSE_BUILTIN_POPCOUNT -msse4.2
+ SHLIB_LINK += ${THREADLIBS}
+ 
+-PG_CPPFLAGS = -I${BOOSTHOME}/include -I${RDKIT}/Code -DRDKITVER='"007300"' ${AVALONFLAGS} ${INCHIFLAGS} ${POPCOUNTFLAGS}
++PG_CPPFLAGS = -I${PREFIX}/include -I${PREFIX}/include/rdkit -DRDKITVER='"007300"' ${AVALONFLAGS} ${INCHIFLAGS} ${POPCOUNTFLAGS}
  
  CPLUSPLUSFLAGS = $(filter-out -fexcess-precision=standard -Wmissing-prototypes -Wdeclaration-after-statement, $(CFLAGS))
  CPLUSPLUSFLAGS += -Wno-unused-function 

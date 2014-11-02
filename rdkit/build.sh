@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
+
 $PYTHON "$RECIPE_DIR/fetch_inchi.py"
 $PYTHON "$RECIPE_DIR/fetch_avalontools.py"
 
