@@ -7,6 +7,7 @@
 # Build dependencies:
 # - bzip2-devel
 
+echo "PREFIX: " $PREFIX
 export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared"
 export CXXFLAGS="${CFLAGS}"
 
@@ -15,7 +16,7 @@ export BZIP2_LIBPATH="${PREFIX}/lib"
 export ZLIB_INCLUDE="${PREFIX}/include"
 export ZLIB_LIBPATH="${PREFIX}/lib"
 
-./bootstrap.sh --prefix="${PREFIX}/";
+./bootstrap.sh --prefix="${PREFIX}/" --with-libraries=python,thread,system,regex;
 
 sed -i'.bak' -e's/^using python.*;//' ./project-config.jam
 
@@ -28,5 +29,10 @@ echo "     : $PY_INC" >> ./project-config.jam
 echo "     : $PREFIX/lib" >> ./project-config.jam
 echo "     ;" >> ./project-config.jam
 
-./b2 -q install --debug-configuration;
+tmpd=$PWD
+cd $PREFIX/lib
+ln -s libpython3.4m.dylib libpython3.4.dylib
+cd $tmpd
+
+./b2 -q install --with-python --with-thread --with-system --with-regex --debug-configuration include=$PY_INC;
 
