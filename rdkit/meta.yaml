@@ -16,8 +16,8 @@ requirements:
     - cmake [linux]
     - cmake <=2.8.9 [osx]
     - requests
-    - python
     - boost
+    - python
     - numpy
     - pil [py2k]
     - pillow [py3k]
