@@ -1,10 +1,12 @@
 package:
   name: rdkit
-  version: 2014.09.1pre
+  version: 2015.03.1pre
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
   git_branch: master
+  patches:
+    - rdpaths.patch
 
 build:
   number: 0 

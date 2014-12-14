@@ -5,7 +5,7 @@ from utils import download_file
 
 AVALON_URL = (
     'http://downloads.sourceforge.net/project/avalontoolkit/' 
-    'AvalonToolkit_1.1_beta/AvalonToolkit_1.1_beta.source.tar'
+    'AvalonToolkit_1.2/AvalonToolkit_1.2.0.source.tar'
     )
 
 avalon_tarball = download_file(AVALON_URL)

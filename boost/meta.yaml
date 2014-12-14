@@ -7,9 +7,9 @@ source:
     fn: boost_1_56_0.tar.bz2 [unix]
     url: http://sourceforge.net/projects/boost/files/boost/1.56.0/boost_1_56_0.tar.bz2 [unix]
     fn: boost_1_56_0-msvc-10.0-64.exe [win64]
-    url: http://downloads.sourceforge.net/project/boost/boost-binaries/1.56.0-build2/boost_1_56_0-msvc-10.0-64.exe [win64]
+    url: http://downloads.sourceforge.net/project/boost/boost-binaries/1.56.0/boost_1_56_0-msvc-10.0-64.exe [win64]
     fn: boost_1_56_0-msvc-10.0-32.exe [win32]
-    url: http://download.sourceforge.net/project/boost/boost-binaries/1.56.0-build2/boost_1_56_0-msvc-10.0-32.exe [win32]
+    url: http://downloads.sourceforge.net/project/boost/boost-binaries/1.56.0/boost_1_56_0-msvc-10.0-32.exe [win32]
     #patches:
     #  - e4bde20f.patch [osx] no boost/atomic/detail/gcc-atomic.hpp in 1.56
     #  - 6bb71fdd.patch [osx] no boost/atomic/detail/cas128strong.hpp in 1.56

@@ -1,13 +1,17 @@
 diff --git Code/PgSQL/rdkit/adapter.cpp Code/PgSQL/rdkit/adapter.cpp
-index d3185b7..cdb5b13 100644
+index 877e9cc..c733bd5 100644
 --- Code/PgSQL/rdkit/adapter.cpp
 +++ Code/PgSQL/rdkit/adapter.cpp
-@@ -47,7 +47,7 @@
+@@ -50,10 +50,10 @@
  #include <DataStructs/SparseIntVect.h>
  #include <boost/integer_traits.hpp>
  #ifdef BUILD_INCHI_SUPPORT
 -#include <INCHI-API/inchi.h>
 +#include <GraphMol/inchi.h>
  #endif
+ #ifdef BUILD_AVALON_SUPPORT
+-#include <AvalonTools/AvalonTools.h>
++#include <GraphMol/AvalonTools.h>
+ #endif
  #include "rdkit.h"
- 
+ #include <GraphMol/ChemReactions/ReactionFingerprints.h>
