@@ -16,7 +16,7 @@ export BZIP2_LIBPATH="${PREFIX}/lib"
 export ZLIB_INCLUDE="${PREFIX}/include"
 export ZLIB_LIBPATH="${PREFIX}/lib"
 
-./bootstrap.sh --prefix="${PREFIX}/" --with-libraries=python,thread,system,regex;
+./bootstrap.sh --prefix="${PREFIX}/" --with-libraries=python,regex;
 
 sed -i'.bak' -e's/^using python.*;//' ./project-config.jam
 
@@ -38,5 +38,5 @@ if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.4" ]; then
   cd $tmpd
 fi
 
-./b2 -q install --with-python --with-thread --with-system --with-regex --debug-configuration include=$PY_INC;
+./b2 -q install --with-python --with-regex --debug-configuration include=$PY_INC;
 
