@@ -23,7 +23,7 @@ RUN git clone https://github.com/rdkit/conda-rdkit
 
 WORKDIR conda-rdkit
 
-RUN git checkout development
+#RUN git checkout development
 
 RUN conda build boost
 RUN conda build rdkit
