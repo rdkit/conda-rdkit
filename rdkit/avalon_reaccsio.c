@@ -1,5 +1,5 @@
 /* 
-   This is the AvalonToolkit 1.1_beta file SourceDistribution/common/reaccsio.c
+   This is the AvalonToolkit 1.2.0 file SourceDistribution/common/reaccsio.c
    modified at line 1446 to comment-out a call to MyFree and fix a crash
    occurring on windows.
 */
@@ -546,26 +546,58 @@ struct prop_line_t * ReadProperties(Fortran_FILE *fp,
             ShowMessageI("nentries = %d","ReadProperties", nentries);
             ShowMessageS("buffer = '%s'","ReadProperties",fp->buffer);
          }
-         /* Just handle mass difference for stubstitution point labels */
+         /* Just handle mass difference for substitution point labels and some well-known other atoms */
          for (n=0; n<nentries; n++)
             if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "R"))
                mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n];
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "H")  &&    1 <= tmp_vals[n]  &&  tmp_vals[n] <=   3)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-1;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol,"Li")  &&    6 <= tmp_vals[n]  &&  tmp_vals[n] <=   7)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-7;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "B")  &&   10 <= tmp_vals[n]  &&  tmp_vals[n] <=  11)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-11;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "C")  &&   12 <= tmp_vals[n]  &&  tmp_vals[n] <=  14)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-12;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "N")  &&   13 <= tmp_vals[n]  &&  tmp_vals[n] <=  15)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-14;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "O")  &&   16 <= tmp_vals[n]  &&  tmp_vals[n] <=  18)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-16;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "F")  &&   18 <= tmp_vals[n]  &&  tmp_vals[n] <=  19)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-19;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "P")  &&   31 <= tmp_vals[n]  &&  tmp_vals[n] <=  33)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-31;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "S")  &&   32 <= tmp_vals[n]  &&  tmp_vals[n] <=  36)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-32;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol,"Cl")  &&   35 <= tmp_vals[n]  &&  tmp_vals[n] <=  37)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-35;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol,"Co")  &&   56 <= tmp_vals[n]  &&  tmp_vals[n] <=  61)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-59;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol,"Br")  &&   79 <= tmp_vals[n]  &&  tmp_vals[n] <=  81)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-80;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "Y")  &&   88 <= tmp_vals[n]  &&  tmp_vals[n] <=  90)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-89;
+            else if (0 == strcmp(mp->atom_array[tmp_ats[n]-1].atom_symbol, "I")  &&  123 <= tmp_vals[n]  &&  tmp_vals[n] <= 131)
+               mp->atom_array[tmp_ats[n]-1].mass_difference = tmp_vals[n]-127;
       }
       else if (STRING_BEGINS(fp->buffer,"M  ALS"))      /* atom type lists */
       {
          /* Just ignore these, because they are taken care of by      */
          /* the atom list lines read before.			      */
       }
-      else if (STRING_BEGINS(fp->buffer,"M  SLB") ||	/* short cut lines */
-               STRING_BEGINS(fp->buffer,"M  STY") ||
-               STRING_BEGINS(fp->buffer,"M  SAL") ||
-               STRING_BEGINS(fp->buffer,"M  SBL") ||
-               STRING_BEGINS(fp->buffer,"M  SDI") ||
-               STRING_BEGINS(fp->buffer,"M  SMT") ||
-               STRING_BEGINS(fp->buffer,"M  SBV") ||
-               STRING_BEGINS(fp->buffer,"M  SCL") ||
-               STRING_BEGINS(fp->buffer,"M  SAP") ||
-               STRING_BEGINS(fp->buffer,"M  SDS"))
+      /* ignore short cut lines */
+      else if (STRING_BEGINS(fp->buffer,"M  SLB") ||    // Sgroup Labels
+               STRING_BEGINS(fp->buffer,"M  STY") ||    // Sgroup Type
+               STRING_BEGINS(fp->buffer,"M  SAL") ||    // Sgroup Atom List
+               STRING_BEGINS(fp->buffer,"M  SBL") ||    // Sgroup Bond List
+               STRING_BEGINS(fp->buffer,"M  SDI") ||    // Sgroup Display Information, e.g. bracket positions
+               STRING_BEGINS(fp->buffer,"M  SMT") ||    // Sgroup Subscript text
+               STRING_BEGINS(fp->buffer,"M  SBV") ||    // Abbreviation SGroup bond and vector information
+               STRING_BEGINS(fp->buffer,"M  SCL") ||    // Abbreviation Sgroup class
+               STRING_BEGINS(fp->buffer,"M  SAP") ||    // Abbreviation Sgroup Attachment Point
+               STRING_BEGINS(fp->buffer,"M  SDT") ||    // Data Sgroup Field Description
+               STRING_BEGINS(fp->buffer,"M  SDD") ||    // Data Sgroup Display Information
+               STRING_BEGINS(fp->buffer,"M  SED") ||    // Data Sgroup Data
+               STRING_BEGINS(fp->buffer,"M  SDS"))      // Sgroup Expansion
       {
          /* Just ignore those line because they are display-only. */
       }
