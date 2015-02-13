@@ -1,0 +1,37 @@
+package:
+  name: postgresql
+  version: 9.4.1
+
+source:
+  fn: postgresql-9.4.1.tar.bz2
+  url: http://ftp.postgresql.org/pub/source/v9.4.1/postgresql-9.4.1.tar.bz2
+  md5: 2cf30f50099ff1109d0aa517408f8eff
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - openssl
+    - readline
+    - libxml2
+    - libxslt
+  run:
+    - python
+    - openssl
+    - readline
+    - libxml2
+    - libxslt
+
+test:
+  commands:
+    - initdb --help
+    - postgres --help
+    - createdb --help
+    - psql --help
+
+about:
+  home: http://www.postgresql.org
+  license: PostgreSQL License
+
