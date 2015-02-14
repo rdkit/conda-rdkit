@@ -15,10 +15,10 @@ build:
 requirements:
   build:
     - rdkit 2015.03.1pre
-    - postgresql
+    - postgresql >=9.4,<9.5
   run:
     - rdkit 2015.03.1pre
-    - postgresql
+    - postgresql >=9.4,<9.5
 
 about:
   home: http://rdkit.org
