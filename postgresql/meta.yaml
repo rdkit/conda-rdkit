@@ -6,6 +6,8 @@ source:
   fn: postgresql-9.4.1.tar.bz2
   url: http://ftp.postgresql.org/pub/source/v9.4.1/postgresql-9.4.1.tar.bz2
   md5: 2cf30f50099ff1109d0aa517408f8eff
+  patches:
+    - prefer_ncurses_to_termcap.patch
 
 build:
   number: 0
@@ -14,12 +16,14 @@ requirements:
   build:
     - python
     - openssl
+    - ncurses
     - readline
     - libxml2
     - libxslt
   run:
     - python
     - openssl
+    - ncurses
     - readline
     - libxml2
     - libxslt

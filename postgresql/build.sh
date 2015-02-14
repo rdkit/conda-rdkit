@@ -11,7 +11,13 @@
     --with-libxml          \
     --with-libxslt
 
-make world
+make
 make check
-make install-world
+make install
+
+pushd contrib
+make
+make check
+make install
+popd
 
