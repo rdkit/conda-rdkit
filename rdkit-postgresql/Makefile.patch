@@ -1,17 +1,18 @@
 diff --git Code/PgSQL/rdkit/Makefile Code/PgSQL/rdkit/Makefile
-index 393a101..f9e116f 100644
+index 077a471..153d008 100644
 --- Code/PgSQL/rdkit/Makefile
 +++ Code/PgSQL/rdkit/Makefile
-@@ -8,18 +8,20 @@
+@@ -13,18 +13,22 @@
  # -------------------------
  
  
 -RDKIT=$(RDBASE)
--
 +RDKIT=$(PREFIX)
 +USE_INCHI=1
 +USE_AVALON=1
++USE_POPCOUNT=0
 +STATIC_LINK=0
+ 
  
  ifeq ($(USE_INCHI),1)
    INCHILIBS=-lRDInchiLib -lInchi
@@ -27,7 +28,7 @@ index 393a101..f9e116f 100644
    AVALONREGRESS=avalon
  endif
  
-@@ -39,14 +41,11 @@ else
+@@ -44,14 +48,11 @@ else
    SHLIB_LINK += -L${RDKIT}/lib $(addsuffix _static,${RDKLIBS})
  endif
  
