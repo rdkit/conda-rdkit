@@ -19,8 +19,7 @@ requirements:
     - boost
     - python
     - numpy
-    - pil [py2k]
-    - pillow [py3k]
+    - pillow
     - freetype
     - py2cairo [linux and py2k]
   run:
