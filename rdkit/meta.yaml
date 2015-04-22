@@ -16,14 +16,14 @@ requirements:
     - cmake [linux]
     - cmake <=2.8.9 [osx]
     - requests
-    - boost
+    - boost ==1.56.0
     - python
     - numpy
     - pillow
     - freetype
     - py2cairo [linux and py2k]
   run:
-    - boost
+    - boost ==1.56.0
     - python
     - numpy
 
