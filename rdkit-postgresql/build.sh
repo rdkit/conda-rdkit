@@ -1,4 +1,4 @@
-echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
+#echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
 
 cd $SRC_DIR/Code/PgSQL/rdkit
 
