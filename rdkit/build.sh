@@ -30,7 +30,7 @@ make
 if [[ `uname` == 'Linux' ]]; then
     RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
 else
-    RDBASE=$SRC_DIR DYLD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
+    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
 fi
 
 make install
