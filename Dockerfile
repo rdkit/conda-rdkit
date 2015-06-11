@@ -17,6 +17,7 @@ ENV PATH /home/rdkit/miniconda/bin:$PATH
 
 RUN conda update conda --yes --quiet
 RUN conda install jinja2 conda-build --yes --quiet
+RUN conda install binstar --yes --quiet
 
 RUN git clone https://github.com/rdkit/conda-rdkit
 
@@ -32,4 +33,5 @@ RUN conda build rdkit-postgresql --quiet --no-binstar-upload
 
 RUN CONDA_PY=34 conda build boost --quiet --no-binstar-upload
 RUN CONDA_PY=34 conda build rdkit --quiet --no-binstar-upload
+RUN CONDA_PY=34 conda build postgresql --quiet --no-binstar-upload
 
