@@ -1,6 +1,6 @@
 package:
   name: rdkit-postgresql
-  version: 2015.03.1pre
+  version: 2015.03.1.dev1
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
@@ -14,10 +14,10 @@ build:
 
 requirements:
   build:
-    - rdkit 2015.03.1pre
+    - rdkit >=2015.03.1.dev1
     - postgresql >=9.4,<9.5
   run:
-    - rdkit 2015.03.1pre
+    - rdkit >=2015.03.1.dev1
     - postgresql >=9.4,<9.5
 
 about:

@@ -1,4 +1,4 @@
-echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
+$PYTHON "$RECIPE_DIR/pkg_version.py"
 
 cd $SRC_DIR/Code/PgSQL/rdkit
 

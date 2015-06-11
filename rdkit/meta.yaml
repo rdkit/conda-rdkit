@@ -1,6 +1,6 @@
 package:
   name: rdkit
-  version: 2015.03.1pre
+  version: 2015.03.1.dev1
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
@@ -13,8 +13,7 @@ build:
 
 requirements:
   build:
-    - cmake [linux]
-    - cmake <=2.8.9 [osx]
+    - cmake [unix]
     - requests
     - boost ==1.56.0
     - python
