@@ -26,6 +26,7 @@ set RDBASE=%SRC_DIR%
 set PYTHONPATH=%RDBASE%
 
 nmake test
+%PYTHON% "%RECIPE_DIR%\pkg_version.py"
 
 nmake install
 
