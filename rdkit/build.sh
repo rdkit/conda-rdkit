@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
-
 $PYTHON "$RECIPE_DIR/fetch_inchi.py"
 $PYTHON "$RECIPE_DIR/fetch_avalontools.py"
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
