@@ -15,7 +15,7 @@ source:
     #  - 6bb71fdd.patch [osx] no boost/atomic/detail/cas128strong.hpp in 1.56
 
 build:
-    number: 0
+    number: 1
 
 requirements:
     build:
