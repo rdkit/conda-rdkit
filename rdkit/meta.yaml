@@ -20,7 +20,7 @@ requirements:
     - numpy
     - pillow
     - freetype
-    - py2cairo [linux and py2k]
+    - cairocffi [linux]
     - pandas
   run:
     - boost ==1.56.0
