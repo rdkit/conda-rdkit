@@ -23,7 +23,7 @@ cmake \
     -D CMAKE_BUILD_TYPE=Release \
     .
 
-make
+make -j$CPU_COUNT
 
 if [[ `uname` == 'Linux' ]]; then
     RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
