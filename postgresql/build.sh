@@ -11,12 +11,12 @@
     --with-libxml          \
     --with-libxslt
 
-make
+make -j$CPU_COUNT
 make check
 make install
 
 pushd contrib
-make
+make -j$CPU_COUNT
 make check
 make install
 popd
