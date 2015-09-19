@@ -21,6 +21,7 @@ requirements:
     - pillow
     - freetype
     - py2cairo [linux and py2k]
+    - pandas
   run:
     - boost ==1.56.0
     - python
