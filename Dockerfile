@@ -36,9 +36,11 @@ RUN CONDA_PY=34 conda build boost --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build cairocffi --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build postgresql --quiet --no-anaconda-upload
+RUN CONDA_PY=34 conda build rdkit-postgresql --quiet --no-anaconda-upload
 
 RUN CONDA_PY=35 conda build boost --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build cairocffi --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build postgresql --quiet --no-anaconda-upload
+RUN CONDA_PY=35 conda build rdkit-postgresql --quiet --no-anaconda-upload
 
