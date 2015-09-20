@@ -1,6 +1,6 @@
 package:
   name: postgresql
-  version: 9.4.1
+  version: 9.4.4
 
 source:
   fn: postgresql-9.4.4.tar.bz2
