@@ -1,6 +1,18 @@
 %PYTHON% "%RECIPE_DIR%\fetch_inchi.py"
 %PYTHON% "%RECIPE_DIR%\fetch_avalontools.py"
 
+rem surely there's a better way than this
+if "%PY_VER%"=="2.7" (
+	set PYTHON_LIBRARY=python27.lib
+) else if  "%PY_VER%"=="3.4" (
+	set PYTHON_LIBRARY=python34.lib
+) else if  "%PY_VER%"=="3.5" (
+	set PYTHON_LIBRARY=python35.lib
+) else (
+	echo "Unexpected version of python"
+	exit 1
+)
+
 cmake ^
     -G "NMake Makefiles" ^
     -D RDK_INSTALL_INTREE=OFF ^
@@ -8,16 +20,15 @@ cmake ^
     -D RDK_BUILD_AVALON_SUPPORT=ON ^
     -D RDK_USE_FLEXBISON=OFF ^
     -D AVALONTOOLS_DIR="%SRC_DIR%\External\AvalonTools\src\SourceDistribution" ^
+    -D Python_ADDITIONAL_VERSIONS=${PY_VER} ^
     -D PYTHON_EXECUTABLE="%PYTHON%" ^
     -D PYTHON_INCLUDE_DIR="%PREFIX%\include" ^
-    -D PYTHON_LIBRARY="%PREFIX%\libs\python27.lib" ^
+    -D PYTHON_LIBRARY="%PREFIX%\libs\%PYTHON_LIBRARY%" ^
     -D PYTHON_INSTDIR="%SP_DIR%" ^
     -D BOOST_ROOT="%LIBRARY_PREFIX%" -D Boost_NO_SYSTEM_PATHS=ON ^
     -D CMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
     -D CMAKE_BUILD_TYPE=Release ^
     .
-
-rem set
 
 nmake
 
