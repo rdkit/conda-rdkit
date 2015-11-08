@@ -1,10 +1,10 @@
 package:
   name: rdkit-postgresql
-  version: 2015.03.1.dev1
+  version: 2015.09.1
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_branch: master
+  git_tag: Release_2015_09_1
   patches:
     - Makefile.patch
     - adapter.cpp.patch
