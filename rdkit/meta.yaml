@@ -19,7 +19,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.59.0 [win and py35]
     - python
-    - numpy
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
     - pillow
     - freetype
     - cairocffi [linux]
@@ -29,7 +29,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.59.0 [win and py35]
     - python
-    - numpy
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
 
 test:
   imports:
