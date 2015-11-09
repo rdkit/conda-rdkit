@@ -11,7 +11,7 @@ USER rdkit
 WORKDIR /home/rdkit
 
 RUN wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
-RUN /bin/bash ./Miniconda-latest-Linux-x86_64.sh -b
+RUN /bin/bash ./Miniconda-latest-Linux-x86_64.sh -b -p /home/rdkit/miniconda
 
 ENV PATH /home/rdkit/miniconda/bin:$PATH
 
@@ -43,4 +43,8 @@ RUN CONDA_PY=35 conda build cairocffi --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build postgresql --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit-postgresql --quiet --no-anaconda-upload
+
+RUN CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
+RUN CONDA_PY=34 CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
+RUN CONDA_PY=35 CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
 
