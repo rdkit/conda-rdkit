@@ -17,6 +17,7 @@ set ZLIB_LIBPATH=%PREFIX%\lib
 set STAGE_DIR="%SRC_DIR%\stage"
 
 call bootstrap.bat
+if errorlevel 1 exit 1
 
 b2.exe --build-type=complete -j %CPU_COUNT% --prefix=%STAGE_DIR% architecture=x86 address-model=%ARCH% toolset=%BOOST_TOOLSET% link=shared runtime-link=shared stage
 
