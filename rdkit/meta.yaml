@@ -4,7 +4,8 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_tag: Release_2015_09_1
+  #git_tag: Release_2015_09_1
+  git_branch: prep_Release_2015_09_2
   patches:
     - rdpaths.patch
 
