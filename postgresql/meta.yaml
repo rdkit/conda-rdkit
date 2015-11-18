@@ -16,14 +16,14 @@ requirements:
   build:
     - python
     - openssl
-    - ncurses
+    - ncurses 6.0
     - readline
     - libxml2
     - libxslt
   run:
     - python
     - openssl
-    - ncurses
+    - ncurses 6.0
     - readline
     - libxml2
     - libxslt
