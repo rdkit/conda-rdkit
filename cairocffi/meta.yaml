@@ -1,0 +1,36 @@
+package:
+  name: cairocffi
+  version: "0.7.2"
+
+source:
+  git_url: https://github.com/SimonSapin/cairocffi.git
+  git_tag:
+
+# build:
+  #number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - cffi
+
+  run:
+    - python
+    - cffi
+    - cairo
+
+test:
+  # Python imports
+  imports:
+    - cairocffi
+    
+  requires:
+    - pytest
+    - nose
+
+about:
+  home: https://github.com/SimonSapin/cairocffi
+  license: BSD License
+  summary: 'cffi-based cairo bindings for Python'
+

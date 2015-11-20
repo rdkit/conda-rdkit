@@ -38,5 +38,7 @@ if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.4" ]; then
   cd $tmpd
 fi
 
-./b2 -q install --with-python --with-regex --with-thread --with-system --debug-configuration include=$PY_INC;
+./b2 -q install \
+     --with-python --with-regex --with-serialization --with-thread --with-system \
+     --debug-configuration include=$PY_INC;
 

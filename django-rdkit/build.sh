@@ -1,9 +1,4 @@
-$PYTHON "$RECIPE_DIR/pkg_version.py"
-
-cd $SRC_DIR/Code/PgSQL/rdkit
-
-make
-make install
+$PYTHON setup.py install
 
 export PGPORT=54321
 export PGDATA=$SRC_DIR/pgdata
@@ -19,7 +14,7 @@ pg_ctl start -l $PGDATA/log.txt
 sleep 5
 
 set +e
-make installcheck
+$PYTHON runtests.py
 check_result=$?
 set -e
 

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#echo `date "+%Y%m%d"` > $SRC_DIR/__conda_buildnum__.txt
-
 $PYTHON "$RECIPE_DIR/fetch_inchi.py"
 $PYTHON "$RECIPE_DIR/fetch_avalontools.py"
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
@@ -25,12 +23,14 @@ cmake \
     -D CMAKE_BUILD_TYPE=Release \
     .
 
-make
+make -j$CPU_COUNT
 
 if [[ `uname` == 'Linux' ]]; then
     RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
+    RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR $PYTHON "$RECIPE_DIR/pkg_version.py"
 else
-    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR ctest -V
+    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR make test
+    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR $PYTHON "$RECIPE_DIR/pkg_version.py"
 fi
 
 make install

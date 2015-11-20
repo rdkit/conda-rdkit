@@ -1,10 +1,10 @@
 package:
   name: rdkit
-  version: 2015.03.1
+  version: "__conda_version__"
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_tag: Release_2015_03_1 
+  git_tag: Release_2015_09_2
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
@@ -14,18 +14,23 @@ build:
 
 requirements:
   build:
-    - cmake [unix]
+    - cmake
     - requests
-    - boost ==1.56.0
+    - boost ==1.56.0 [unix]
+    - boost ==1.56.0 [win and py27]
+    - boost ==1.59.0 [win and py35]
     - python
-    - numpy
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
     - pillow
     - freetype
-    - py2cairo [linux and py2k]
+    - cairocffi [linux]
+    - pandas
   run:
-    - boost ==1.56.0
+    - boost ==1.56.0 [unix]
+    - boost ==1.56.0 [win and py27]
+    - boost ==1.59.0 [win and py35]
     - python
-    - numpy
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
 
 test:
   imports:

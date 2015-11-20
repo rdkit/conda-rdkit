@@ -1,11 +1,11 @@
 package:
   name: ncurses
-  version: "5.9"
+  version: "6.0"
 
 build:
-  number: 1
+  number: 0
 
 source:
-  fn: ncurses-5.9.tar.gz
-  url: http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
+  fn: ncurses-6.0.tar.gz
+  url: http://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.0.tar.gz
 
