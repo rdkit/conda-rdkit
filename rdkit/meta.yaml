@@ -17,6 +17,7 @@ requirements:
     - requests
     - boost ==1.56.0 [unix]
     - boost ==1.56.0 [win and py27]
+    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
@@ -27,6 +28,7 @@ requirements:
   run:
     - boost ==1.56.0 [unix]
     - boost ==1.56.0 [win and py27]
+    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
