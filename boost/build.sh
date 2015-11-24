@@ -37,7 +37,12 @@ if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.4" ]; then
   ln -s libpython3.4m.dylib libpython3.4.dylib
   cd $tmpd
 fi
-
+if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.5" ]; then
+  tmpd=$PWD
+  cd $PREFIX/lib
+  ln -s libpython3.5m.dylib libpython3.5.dylib
+  cd $tmpd
+fi
 ./b2 -q install \
      --with-python --with-regex --with-serialization --with-thread --with-system \
      --debug-configuration include=$PY_INC;
