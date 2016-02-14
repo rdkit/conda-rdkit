@@ -1,6 +1,5 @@
 #!/bin/bash
 
-$PYTHON "$RECIPE_DIR/fetch_inchi.py"
 $PYTHON "$RECIPE_DIR/fetch_avalontools.py"
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
 
@@ -8,6 +7,7 @@ cmake \
     -D RDK_INSTALL_INTREE=OFF \
     -D RDK_INSTALL_STATIC_LIBS=OFF \
     -D RDK_BUILD_INCHI_SUPPORT=ON \
+    -D INCHI_INCLUDE_DIR=$PREFIX/include/inchi \
     -D RDK_BUILD_AVALON_SUPPORT=ON \
     -D RDK_USE_FLEXBISON=OFF \
     -D RDK_BUILD_THREADSAFE_SSS=ON \

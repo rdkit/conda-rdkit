@@ -1,0 +1,18 @@
+package:
+  name: inchi
+  version: "1.04"
+
+source:
+  fn: INCHI-1-API.zip
+  url: http://www.inchi-trust.org/download/104/INCHI-1-API.zip
+
+build:
+  number: 1 
+
+requirements:
+  build:
+    - cmake
+    
+about:
+  home: http://www.inchi-trust.org/
+  license:  IUPAC-InChI Trust License

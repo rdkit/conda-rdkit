@@ -19,6 +19,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - inchi
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
     - pillow
@@ -30,6 +31,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - inchi
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
 
