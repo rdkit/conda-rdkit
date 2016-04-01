@@ -1,8 +1,8 @@
 diff --git Code/PgSQL/rdkit/Makefile Code/PgSQL/rdkit/Makefile
-index 077a471..153d008 100644
+index 9e47b9f..13d7074 100644
 --- Code/PgSQL/rdkit/Makefile
 +++ Code/PgSQL/rdkit/Makefile
-@@ -13,18 +13,22 @@
+@@ -11,25 +11,28 @@
  # -------------------------
  
  
@@ -10,25 +10,32 @@ index 077a471..153d008 100644
 +RDKIT=$(PREFIX)
 +USE_INCHI=1
 +USE_AVALON=1
-+USE_POPCOUNT=1
 +STATIC_LINK=0
  
  
  ifeq ($(USE_INCHI),1)
    INCHILIBS=-lRDInchiLib -lInchi
--  INCHIFLAGS=-I${RDKIT}/External -DBUILD_INCHI_SUPPORT  
+-  INCHIFLAGS=-I${RDKIT}/External -DBUILD_INCHI_SUPPORT
 +  INCHIFLAGS=-DBUILD_INCHI_SUPPORT
    INCHIREGRESS=inchi
    USE_THREADS=1
  endif
  ifeq ($(USE_AVALON),1)
    AVALONLIBS=-lAvalonLib -lavalon_clib
--  AVALONFLAGS=-I${RDKIT}/External -DBUILD_AVALON_SUPPORT  
+-  AVALONFLAGS=-I${RDKIT}/External -DBUILD_AVALON_SUPPORT
 +  AVALONFLAGS=-DBUILD_AVALON_SUPPORT
    AVALONREGRESS=avalon
  endif
  
-@@ -44,14 +48,11 @@ else
+ POPCOUNTFLAGS=-mpopcnt
+ 
+ ifeq ($(USE_THREADS),1)
+-  THREADLIBS=-L${BOOSTHOME}/lib -lboost_thread -lboost_system
++  THREADLIBS=-lboost_thread -lboost_system
+ endif
+ 
+ RDKLIBS       = ${AVALONLIBS} ${INCHILIBS} -lMolHash -lFMCS -lChemReactions -lChemTransforms -lFileParsers -lSmilesParse -lFingerprints -lSubgraphs -lDescriptors -lPartialCharges -lSubstructMatch  -lGraphMol -lDataStructs -lDepictor -lRDGeometryLib -lRDGeneral
+@@ -40,14 +43,11 @@ else
    SHLIB_LINK += -L${RDKIT}/lib $(addsuffix _static,${RDKLIBS})
  endif
  
@@ -43,4 +50,4 @@ index 077a471..153d008 100644
 +PG_CPPFLAGS = -I${PREFIX}/include -I${PREFIX}/include/rdkit -DRDKITVER='"007300"' ${AVALONFLAGS} ${INCHIFLAGS} ${POPCOUNTFLAGS}
  
  CPLUSPLUSFLAGS = $(filter-out -fexcess-precision=standard -Wmissing-prototypes -Wdeclaration-after-statement, $(CFLAGS))
- CPLUSPLUSFLAGS += -Wno-unused-function 
+ CPLUSPLUSFLAGS += -Wno-unused-function
