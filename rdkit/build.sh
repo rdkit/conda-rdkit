@@ -1,7 +1,5 @@
 #!/bin/bash
 
-$PYTHON "$RECIPE_DIR/fetch_inchi.py"
-$PYTHON "$RECIPE_DIR/fetch_avalontools.py"
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
 
 cmake \
@@ -12,7 +10,6 @@ cmake \
     -D RDK_USE_FLEXBISON=OFF \
     -D RDK_BUILD_THREADSAFE_SSS=ON \
     -D RDK_TEST_MULTITHREADED=ON \
-    -D AVALONTOOLS_DIR=$SRC_DIR/External/AvalonTools/src/SourceDistribution \
     -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
     -D CMAKE_INSTALL_PREFIX=$PREFIX \
     -D Python_ADDITIONAL_VERSIONS=${PY_VER} \
