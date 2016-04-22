@@ -2,7 +2,7 @@ diff --git Code/PgSQL/rdkit/adapter.cpp Code/PgSQL/rdkit/adapter.cpp
 index 877e9cc..c733bd5 100644
 --- Code/PgSQL/rdkit/adapter.cpp
 +++ Code/PgSQL/rdkit/adapter.cpp
-@@ -50,10 +50,10 @@
+@@ -52,10 +52,10 @@
  #include <DataStructs/SparseIntVect.h>
  #include <boost/integer_traits.hpp>
  #ifdef BUILD_INCHI_SUPPORT
