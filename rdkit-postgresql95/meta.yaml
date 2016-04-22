@@ -1,0 +1,27 @@
+package:
+  name: rdkit-postgresql95
+  version: "__conda_version__"
+
+source:
+  git_url: https://github.com/rdkit/rdkit.git
+  git_branch: master
+  patches:
+    - Makefile.patch
+    - adapter.cpp.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - rdkit >=2016.03.1
+    - postgresql95
+  run:
+    - python
+    - rdkit >=2016.03.1
+    - postgresql95
+
+about:
+  home: http://rdkit.org
+  license: BSD
