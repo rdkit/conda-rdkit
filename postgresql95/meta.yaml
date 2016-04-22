@@ -1,0 +1,41 @@
+package:
+  name: postgresql95
+  version: 9.5.2
+
+source:
+  fn: https://ftp.postgresql.org/pub/source/v9.5.2/postgresql-9.5.2.tar.bz2
+  url: https://ftp.postgresql.org/pub/source/v9.5.2/postgresql-9.5.2.tar.bz2
+  md5: c3f829b50f0351208debc79af3c946f9
+  patches:
+    - prefer_ncurses_to_termcap.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - openssl
+    - ncurses 6.0
+    - readline
+    - libxml2
+    - libxslt
+  run:
+    - python
+    - openssl
+    - ncurses 6.0
+    - readline
+    - libxml2
+    - libxslt
+
+test:
+  commands:
+    - initdb --help
+    - postgres --help
+    - createdb --help
+    - psql --help
+
+about:
+  home: http://www.postgresql.org
+  license: PostgreSQL License
+
