@@ -31,18 +31,24 @@ RUN conda build rdkit --quiet --no-anaconda-upload
 RUN conda build ncurses --quiet --no-anaconda-upload
 RUN conda build postgresql --quiet --no-anaconda-upload
 RUN conda build rdkit-postgresql --quiet --no-anaconda-upload
+RUN conda build postgresql95 --quiet --no-anaconda-upload
+RUN conda build rdkit-postgresql95 --quiet --no-anaconda-upload
 
 RUN CONDA_PY=34 conda build boost --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build cairocffi --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build postgresql --quiet --no-anaconda-upload
 RUN CONDA_PY=34 conda build rdkit-postgresql --quiet --no-anaconda-upload
+RUN CONDA_PY=34 conda build postgresql95 --quiet --no-anaconda-upload
+RUN CONDA_PY=34 conda build rdkit-postgresql95 --quiet --no-anaconda-upload
 
 RUN CONDA_PY=35 conda build boost --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build cairocffi --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build postgresql --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit-postgresql --quiet --no-anaconda-upload
+RUN CONDA_PY=35 conda build postgresql95 --quiet --no-anaconda-upload
+RUN CONDA_PY=35 conda build rdkit-postgresql95 --quiet --no-anaconda-upload
 
 RUN CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
 RUN CONDA_PY=34 CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
