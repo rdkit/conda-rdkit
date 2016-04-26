@@ -17,7 +17,8 @@ make install
 
 pushd contrib
 make -j$CPU_COUNT
-make check
+# LD_LIBRARY_PATH required by hstore_plpython regression tests
+LD_LIBRARY_PATH=$PREFIX/lib make check
 make install
 popd
 
