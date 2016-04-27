@@ -50,7 +50,7 @@ RUN CONDA_PY=35 conda build rdkit-postgresql --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build postgresql95 --quiet --no-anaconda-upload
 RUN CONDA_PY=35 conda build rdkit-postgresql95 --quiet --no-anaconda-upload
 
-RUN CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
-RUN CONDA_PY=34 CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
-RUN CONDA_PY=35 CONDA_NPY=19 conda build rdkit --quiet --no-anaconda-upload
+RUN CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload
+RUN CONDA_PY=34 CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload
+RUN CONDA_PY=35 CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload
 
