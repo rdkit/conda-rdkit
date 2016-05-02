@@ -7,7 +7,6 @@ source:
   git_branch: master
   patches:
     - rdpaths.patch
-    - rddepictor.patch
     - rdconfig.patch [win]
 
 build:
