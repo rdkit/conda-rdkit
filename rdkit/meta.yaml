@@ -7,6 +7,7 @@ source:
   git_tag: Release_2016_03_1
   patches:
     - rdpaths.patch
+    - rddepictor.patch
     - rdconfig.patch [win]
 
 build:
@@ -21,7 +22,7 @@ requirements:
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - python
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
     - pillow
     - freetype
     - cairocffi [linux]
@@ -32,7 +33,7 @@ requirements:
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - python
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.10') }}
+    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
 
 test:
   imports:

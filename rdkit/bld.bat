@@ -1,6 +1,3 @@
-%PYTHON% "%RECIPE_DIR%\fetch_inchi.py"
-%PYTHON% "%RECIPE_DIR%\fetch_avalontools.py"
-
 rem surely there's a better way than this
 if "%PY_VER%"=="2.7" (
 	set PYTHON_LIBRARY=python27.lib
@@ -19,7 +16,6 @@ cmake ^
     -D RDK_BUILD_INCHI_SUPPORT=ON ^
     -D RDK_BUILD_AVALON_SUPPORT=ON ^
     -D RDK_USE_FLEXBISON=OFF ^
-    -D AVALONTOOLS_DIR="%SRC_DIR%\External\AvalonTools\src\SourceDistribution" ^
     -D Python_ADDITIONAL_VERSIONS=${PY_VER} ^
     -D PYTHON_EXECUTABLE="%PYTHON%" ^
     -D PYTHON_INCLUDE_DIR="%PREFIX%\include" ^
