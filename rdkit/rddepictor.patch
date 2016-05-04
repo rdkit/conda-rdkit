@@ -1,0 +1,15 @@
+diff --git Code/GraphMol/Depictor/RDDepictor.cpp Code/GraphMol/Depictor/RDDepictor.cpp
+index a2d22bc..fcd3ba8 100644
+--- Code/GraphMol/Depictor/RDDepictor.cpp
++++ Code/GraphMol/Depictor/RDDepictor.cpp
+@@ -133,6 +133,10 @@ void _shiftCoords(std::list<EmbeddedFrag> &efrags) {
+   // shift the coordinates if there are multiple fragments
+   // so that the fargments do not overlap each other
+ 
++  if (efrags.empty()) {
++    return;
++  }
++  
+   for (std::list<EmbeddedFrag>::iterator efi = efrags.begin();
+        efi != efrags.end(); efi++) {
+     efi->computeBox();
