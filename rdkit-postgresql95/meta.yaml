@@ -16,11 +16,11 @@ requirements:
   build:
     - python
     - rdkit >=2016.03.4,<2016.09
-    - postgresql95
+    - postgresql >=9.5
   run:
     - python
     - rdkit >=2016.03.4,<2016.09
-    - postgresql95
+    - postgresql >=9.5
 
 about:
   home: http://rdkit.org
