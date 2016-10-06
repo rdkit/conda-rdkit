@@ -3,7 +3,7 @@ package:
   version: 9.5.2
 
 source:
-  fn: https://ftp.postgresql.org/pub/source/v9.5.2/postgresql-9.5.2.tar.bz2
+  fn: postgresql-9.5.2.tar.bz2
   url: https://ftp.postgresql.org/pub/source/v9.5.2/postgresql-9.5.2.tar.bz2
   md5: c3f829b50f0351208debc79af3c946f9
   patches:
