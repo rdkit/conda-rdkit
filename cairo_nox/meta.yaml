@@ -1,10 +1,12 @@
 # adapted from: https://github.com/conda/conda-recipes/blob/master/cairo/meta.yaml
 package:
-  name: cairo_nox
+  name: cairo
   version: "1.14.6"
 
 build:
   number: 0
+  features:
+   - nox
 
 requirements:
   build:
