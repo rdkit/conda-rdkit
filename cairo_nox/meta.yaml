@@ -23,7 +23,7 @@ requirements:
     - freetype      2.5.*     [unix]
     - fontconfig    2.11.*    [linux]
     - libpng        1.6.*
-    - pixman        0.32.*
+    - pixman        0.32.*    
     - zlib          1.2.*
 
 
