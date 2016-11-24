@@ -24,13 +24,14 @@ requirements:
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
     - pillow
     - freetype
-    - cairocffi [linux]
+    - cairo_nox [unix]
     - pandas
   run:
     - boost ==1.56.0 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - cairo_nox [unix]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
 
