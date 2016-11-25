@@ -28,6 +28,8 @@ WORKDIR conda-rdkit
 
 RUN \
     conda build boost --quiet --no-anaconda-upload && \
+    conda build nox --quiet --no-anaconda-upload && \
+    conda build cairo-nox --quiet --no-anaconda-upload && \
     conda build cairocffi --quiet --no-anaconda-upload && \
     conda build rdkit --quiet --no-anaconda-upload && \
     conda build ncurses --quiet --no-anaconda-upload && \
@@ -35,14 +37,9 @@ RUN \
     conda build rdkit-postgresql --quiet --no-anaconda-upload && \
     conda build postgresql95 --quiet --no-anaconda-upload && \
     conda build rdkit-postgresql95 --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build boost --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build cairocffi --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build rdkit --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build postgresql --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build rdkit-postgresql --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build postgresql95 --quiet --no-anaconda-upload && \
-    CONDA_PY=34 conda build rdkit-postgresql95 --quiet --no-anaconda-upload && \
     CONDA_PY=35 conda build boost --quiet --no-anaconda-upload && \
+    CONDA_PY=35 conda build nox --quiet --no-anaconda-upload && \
+    CONDA_PY=35 conda build cairo-nox --quiet --no-anaconda-upload && \
     CONDA_PY=35 conda build cairocffi --quiet --no-anaconda-upload && \
     CONDA_PY=35 conda build rdkit --quiet --no-anaconda-upload && \
     CONDA_PY=35 conda build postgresql --quiet --no-anaconda-upload && \
@@ -50,6 +47,5 @@ RUN \
     CONDA_PY=35 conda build postgresql95 --quiet --no-anaconda-upload && \
     CONDA_PY=35 conda build rdkit-postgresql95 --quiet --no-anaconda-upload && \
     CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload && \
-    CONDA_PY=34 CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload && \
     CONDA_PY=35 CONDA_NPY=110 conda build rdkit --quiet --no-anaconda-upload
 
