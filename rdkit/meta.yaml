@@ -26,6 +26,7 @@ requirements:
     - freetype
     - nox [unix]
     - cairo [unix]
+    - eigen
     - pandas
   run:
     - boost ==1.56.0 [unix]
