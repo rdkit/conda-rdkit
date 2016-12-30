@@ -1,0 +1,38 @@
+# adapted from: https://github.com/conda/conda-recipes/blob/master/cairo/meta.yaml
+package:
+  name: cairo
+  version: "1.14.6"
+
+build:
+  number: 0
+  features:
+   - nox
+
+requirements:
+  build:
+    # HACK: The python dep is here to get vc features to work
+    - python                  [win]
+    - pkg-config              [osx]
+    - xz                      [unix]
+    - freetype      2.5.*     [unix]
+    - fontconfig    2.11.*    [linux]
+    - pixman        0.32.*
+    - libpng        1.6.*
+    - zlib          1.2.*
+  run:
+    - freetype      2.5.*     [unix]
+    - fontconfig    2.11.*    [linux]
+    - libpng        1.6.*
+    - pixman        0.32.*    
+    - zlib          1.2.*
+
+
+
+source:
+  fn: cairo-1.14.6.tar.xz
+  url: http://cairographics.org/releases/cairo-1.14.6.tar.xz
+
+about:
+  home: http://cairographics.org/
+  license: LGPL 2.1, MPL 1.1
+  summary: Cairo is a 2D graphics library with support for multiple output devices.
