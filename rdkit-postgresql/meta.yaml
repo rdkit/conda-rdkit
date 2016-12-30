@@ -4,9 +4,9 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_tag: Release_2016_09_3
+  git_rev: Release_2016_09_3
   patches:
-    - Makefile.patch
+    - cmakelists.txt.patch
     - adapter.cpp.patch
 
 build:
@@ -14,6 +14,7 @@ build:
 
 requirements:
   build:
+    - cmake
     - python
     - rdkit >=2016.09
     - postgresql >=9.4,<9.5
