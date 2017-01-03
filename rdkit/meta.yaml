@@ -4,13 +4,13 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_branch: master
+  git_rev: Release_2016_09_3
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
 
 build:
-  number: 0 
+  number: 1
 
 requirements:
   build:
@@ -24,13 +24,16 @@ requirements:
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
     - pillow
     - freetype
-    - cairocffi [linux]
+    - nox [unix]
+    - cairo [unix]
+    - eigen
     - pandas
   run:
     - boost ==1.56.0 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - cairo [unix]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
 
