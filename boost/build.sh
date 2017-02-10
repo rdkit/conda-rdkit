@@ -30,17 +30,11 @@ echo "     : $PREFIX/lib" >> ./project-config.jam
 echo "     ;" >> ./project-config.jam
 
 
-# on the Mac, using py34 with at least conda 3.7.3 requires a symlink for the shared library:
-if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.4" ]; then
+# on the Mac, using py3 with at least conda 3.7.3 requires a symlink for the shared library:
+if [ $OSX_ARCH == "x86_64" -a $PY3K == 1 ]; then
   tmpd=$PWD
   cd $PREFIX/lib
-  ln -s libpython3.4m.dylib libpython3.4.dylib
-  cd $tmpd
-fi
-if [ $OSX_ARCH == "x86_64" -a $PY_VER == "3.5" ]; then
-  tmpd=$PWD
-  cd $PREFIX/lib
-  ln -s libpython3.5m.dylib libpython3.5.dylib
+  ln -s libpython${PY_VER}m.dylib libpython${PY_VER}.dylib
   cd $tmpd
 fi
 ./b2 -q install \
