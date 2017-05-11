@@ -1,4 +1,4 @@
-$PYTHON "$RECIPE_DIR/pkg_version.py"
+# $PYTHON "$RECIPE_DIR/pkg_version.py"
 
 cd $SRC_DIR/Code/PgSQL/rdkit
 
@@ -9,10 +9,12 @@ cmake \
     -D RDK_OPTIMIZE_NATIVE=ON \
     -D RDK_BUILD_AVALON_SUPPORT=ON \
     -D RDK_BUILD_INCHI_SUPPORT=ON \
+    -D RDK_BUILD_CPP_TESTS=OFF \
+    -D RDK_BUILD_PYTHON_WRAPPERS=OFF \
     -D RDKit_DIR=$PREFIX/lib \
     .
 
-make
+make -j$CPU_COUNT
 
 /bin/bash -e ./pgsql_install.sh
 
