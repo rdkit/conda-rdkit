@@ -27,6 +27,7 @@ requirements:
     - freetype
     - nox [unix]
     - cairo [unix]
+    - pkg-config [unix]
     - eigen
     - pandas
   run:
