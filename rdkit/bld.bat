@@ -5,7 +5,9 @@ if "%PY_VER%"=="2.7" (
 	set PYTHON_LIBRARY=python34.lib
 ) else if  "%PY_VER%"=="3.5" (
 	set PYTHON_LIBRARY=python35.lib
-) else (
+) else if  "%PY_VER%"=="3.6" (
+	set PYTHON_LIBRARY=python36.lib
+)else (
 	echo "Unexpected version of python"
 	exit 1
 )
