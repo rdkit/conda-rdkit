@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2016_09_4
+  git_rev: Release_2017_03_1
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
@@ -20,6 +20,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - boost ==1.59.0 [win and py36]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
     - pillow
@@ -33,6 +34,7 @@ requirements:
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
+    - boost ==1.59.0 [win and py36]
     - cairo [unix]
     - python
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
