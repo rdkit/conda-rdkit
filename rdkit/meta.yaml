@@ -38,6 +38,8 @@ requirements:
     - boost ==1.59.0 [win and py36]
     - cairo [unix]
     - python
+    - pillow
+    - pandas
     - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
 
 test:
