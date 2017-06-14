@@ -3,8 +3,8 @@ package:
   version: "__conda_version__"
 
 source:
-  git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2017_03_2
+  git_url: https://github.com/ptosco/rdkit.git
+  git_rev: master
   patches:
     - cmakelists.txt.patch
     - adapter.cpp.patch
@@ -15,6 +15,12 @@ build:
 requirements:
   build:
     - cmake
+    - msys2-conda-epoch >=20160418 [win]
+    - m2-msys2-runtime [win]
+    - m2-libiconv [win]
+    - m2-libintl [win]
+    - m2-diffutils [win]
+    - m2-patch [win]
     - postgresql >=9.5
     - rdkit >=2017.03
   run:

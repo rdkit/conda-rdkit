@@ -16,14 +16,14 @@ set BZIP2_LIBPATH=%PREFIX%\lib
 set ZLIB_INCLUDE=%PREFIX%\include
 set ZLIB_LIBPATH=%PREFIX%\lib
 
-if "%PKG_VERSION%"=="1.56.0" ( 
-	set BOOST_DIR=%SRC_DIR%\boost_1_56_0 
-) else if  "%PKG_VERSION%"=="1.59.0" ( 
-	set BOOST_DIR=%SRC_DIR%\boost_1_59_0
-) else (
-	echo "Unexpected version of boost"
-	exit 1
-) 
+if "%PKG_VERSION%" neq "1.56.0" (
+  if "%PKG_VERSION%" neq "1.59.0" (
+    echo "Unexpected version of boost"
+    exit 1
+  )
+)
+
+set BOOST_DIR=%SRC_DIR%
 
 set STAGE_DIR="%BOOST_DIR%\stage"
 
