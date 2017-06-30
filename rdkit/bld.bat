@@ -7,9 +7,16 @@ if "%PY_VER%"=="2.7" (
 	set PYTHON_LIBRARY=python35.lib
 ) else if  "%PY_VER%"=="3.6" (
 	set PYTHON_LIBRARY=python36.lib
-)else (
+) else (
 	echo "Unexpected version of python"
 	exit 1
+)
+
+where jom 2> NUL
+if %ERRORLEVEL% equ 0 (
+  set MAKE_CMD=jom -j%CPU_COUNT%
+) else (
+  set MAKE_CMD=nmake
 )
 
 cmake ^
@@ -28,14 +35,13 @@ cmake ^
     -D CMAKE_BUILD_TYPE=Release ^
     .
 
-nmake
+%MAKE_CMD%
 
 rem extend the environment settings in preparation to tests
 set RDBASE=%SRC_DIR%
 set PYTHONPATH=%RDBASE%
 
-nmake test
+%MAKE_CMD% test
 %PYTHON% "%RECIPE_DIR%\pkg_version.py"
 
-nmake install
-
+%MAKE_CMD% install

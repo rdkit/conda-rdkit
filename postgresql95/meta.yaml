@@ -7,7 +7,7 @@ source:
   url: https://ftp.postgresql.org/pub/source/v9.5.2/postgresql-9.5.2.tar.bz2
   md5: c3f829b50f0351208debc79af3c946f9
   patches:
-    - prefer_ncurses_to_termcap.patch
+    - prefer_ncurses_to_termcap.patch [not win]
 
 build:
   number: 0
@@ -15,16 +15,19 @@ build:
 requirements:
   build:
     - python
+    - perl [win]
+    - gettext [win]
+    - zlib
     - openssl
-    - ncurses 6.0
-    - readline
+    - ncurses 6.0 [not win]
+    - readline [not win]
     - libxml2
     - libxslt
   run:
     - python
     - openssl
-    - ncurses 6.0
-    - readline
+    - ncurses 6.0 [not win]
+    - readline [not win]
     - libxml2
     - libxslt
 
