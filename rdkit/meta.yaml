@@ -3,8 +3,8 @@ package:
   version: "__conda_version__"
 
 source:
-  git_url: https://github.com/ptosco/rdkit.git
-  git_rev: master
+  git_url: https://github.com/rdkit/rdkit.git
+  git_rev: Release_2017_03
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
