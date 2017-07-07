@@ -8,6 +8,7 @@ source:
   md5: 1fe952c44ed26d7e6a335cf991a9c1c6
   patches:
     - prefer_ncurses_to_termcap.patch [not win]
+    - postgresql_vs2015.patch [win]
 
 build:
   number: 0
@@ -16,6 +17,7 @@ requirements:
   build:
     - python
     - perl [win]
+    - m2-patch [win]
     - gettext [win]
     - openssl
     - ncurses 6.0 [not win]

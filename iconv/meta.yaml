@@ -1,0 +1,13 @@
+package:
+    name: iconv
+    version: 1.15
+
+source:
+    git_url: https://github.com/winlibs/libiconv.git
+
+build:
+    number: 0
+
+about:
+    home: https://github.com/winlibs/libiconv
+    license: LGPL
