@@ -16,7 +16,7 @@ requirements:
   build:
     - cmake
     - requests
-    - boost ==1.56.0 [unix]
+    - boost ==1.61.0 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
@@ -32,7 +32,7 @@ requirements:
     - pandas
     - m2-patch [win]
   run:
-    - boost ==1.56.0 [unix]
+    - boost ==1.61.0 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
