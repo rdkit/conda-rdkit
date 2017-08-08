@@ -1,0 +1,30 @@
+package:
+  name: cheto
+  version: "0.1"
+
+source:
+  git_url: https://github.com/rdkit/CheTo.git
+  git_rev: master
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - scikit-learn
+    - rdkit >=2017.03
+  run:
+    - python
+    - scikit-learn
+    - rdkit >=2017.03
+
+test:
+  imports:
+    - rdkit
+
+about:
+  home: http://rdkit.org
+  license: BSD
+  summary: chemical topic modeling implementation from the paper http://pubs.acs.org/doi/10.1021/acs.jcim.7b00249
