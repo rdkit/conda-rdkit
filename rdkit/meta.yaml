@@ -22,7 +22,7 @@ requirements:
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - python
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
+    - numpy >=1.11
     - pillow
     - freetype
     - nox [unix]
@@ -41,7 +41,7 @@ requirements:
     - python
     - pillow
     - pandas
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
+    - numpy >=1.11
 
 test:
   imports:
