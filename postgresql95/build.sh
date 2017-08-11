@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# this is required to get the build to work on OS X
+if [ "$OSX_ARCH" == "x86_64" ]; then
+  export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+  install_name_tool -id "@rpath/libreadline.6.2.dylib" $PREFIX/lib/libreadline.6.2.dylib
+fi
 ./configure \
     --prefix=$PREFIX       \
     --with-includes=$PREFIX/include \
@@ -18,6 +23,10 @@ make install
 pushd contrib
 make -j$CPU_COUNT
 # LD_LIBRARY_PATH required by hstore_plpython regression tests
+# make check may fail because of unix socket names
+# being too long depending on the length of the path
+# where anaconda is installed
+# add an --ignore-errors if this is the case
 LD_LIBRARY_PATH=$PREFIX/lib make check
 make install
 popd
