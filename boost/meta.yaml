@@ -27,10 +27,12 @@ requirements:
       - zlib
       - bzip2
       - python
+      - numpy >=1.11
     run:
       - zlib
       - bzip2
       - python
+      - numpy >=1.11
 
 about:
     home: http://www.boost.org/

@@ -8,7 +8,7 @@
 # - bzip2-devel
 
 echo "PREFIX: " $PREFIX
-export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared"
+export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared";
 export CXXFLAGS="${CFLAGS}"
 
 export BZIP2_INCLUDE="${PREFIX}/include"
@@ -18,7 +18,7 @@ export ZLIB_LIBPATH="${PREFIX}/lib"
 
 ./bootstrap.sh --prefix="${PREFIX}/" --with-libraries=python,regex,thread,system,atomic,chrono,date_time,serialization;
 
-sed -i'.bak' -e's/^using python.*;//' ./project-config.jam
+sed -i'.bak' -e's/using python.*;//' ./project-config.jam
 
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
 
@@ -36,7 +36,9 @@ if [ "$OSX_ARCH" == "x86_64" ] && ( echo $PY_VER | awk '{exit ($1 > 3.0 ? 0 : 1)
   cd $PREFIX/lib
   ln -s libpython${PY_VER}m.dylib libpython${PY_VER}.dylib
   cd $tmpd
+  export B2_EXTRAS='toolset=clang cxxflags="-stdlib=libc++" linkflags="-stdlib=libc++"'
 fi
-./b2 -q install \
+
+./b2 -q install $B2_EXTRAS \
      --with-python --with-regex --with-serialization --with-thread --with-system --with-atomic --with-chrono --with-date_time \
      --debug-configuration include=$PY_INC;
