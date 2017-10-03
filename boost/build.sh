@@ -36,6 +36,9 @@ if [ "$OSX_ARCH" == "x86_64" ] && ( echo $PY_VER | awk '{exit ($1 > 3.0 ? 0 : 1)
   cd $PREFIX/lib
   ln -s libpython${PY_VER}m.dylib libpython${PY_VER}.dylib
   cd $tmpd
+fi
+
+if [ "$OSX_ARCH" == "x86_64" ]; then
   export B2_EXTRAS='toolset=clang cxxflags="-stdlib=libc++" linkflags="-stdlib=libc++"'
 fi
 

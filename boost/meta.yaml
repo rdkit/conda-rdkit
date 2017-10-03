@@ -1,15 +1,15 @@
 
 package:
     name: boost
-    version: 1.61.0 [unix]
+    version: 1.63.0 [unix]
     version: 1.56.0 [win and py27]
     version: 1.56.0 [win and py34]
     version: 1.59.0 [win and py35]
     version: 1.59.0 [win and py36]
 
 source:
-    fn: boost_1_61_0.tar.bz2 [unix]
-    url: https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.bz2 [unix]
+    fn: boost_1_63_0.tar.bz2 [unix]
+    url: https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.bz2 [unix]
     fn: boost_1_56_0.zip [win and py27]
     url: http://downloads.sourceforge.net/project/boost/boost/1.56.0/boost_1_56_0.zip [win and py27]
     fn: boost_1_56_0.zip [win and py34]
@@ -20,19 +20,21 @@ source:
     url: http://downloads.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.zip [win and py36]
 
 build:
-    number: 3
+    number: 1
 
 requirements:
     build:
+      - conda ==4.3.25
       - zlib
       - bzip2
       - python
-      - numpy >=1.11
+      - numpy >=1.12
     run:
+      - conda ==4.3.25
       - zlib
       - bzip2
       - python
-      - numpy >=1.11
+      - numpy >=1.12
 
 about:
     home: http://www.boost.org/
