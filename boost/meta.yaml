@@ -30,7 +30,6 @@ requirements:
       - python
       - numpy >=1.12
     run:
-      - conda ==4.3.25
       - zlib
       - bzip2
       - python

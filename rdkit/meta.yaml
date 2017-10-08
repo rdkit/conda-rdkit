@@ -33,7 +33,6 @@ requirements:
     - pandas
     - m2-patch [win]
   run:
-    - conda ==4.3.25
     - boost ==1.63.0 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.56.0 [win and py34]
