@@ -19,7 +19,6 @@ requirements:
     - requests
     - boost ==1.63.0 [unix]
     - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - python
@@ -35,7 +34,6 @@ requirements:
   run:
     - boost ==1.63.0 [unix]
     - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - cairo [unix]
