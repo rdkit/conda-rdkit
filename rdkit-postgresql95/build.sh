@@ -2,6 +2,9 @@
 
 cd $SRC_DIR/Code/PgSQL/rdkit
 
+if [ "$OSX_ARCH" == "x86_64" ]; then
+  export CXXFLAGS="-std=c++11 -stdlib=libc++"
+fi
 cmake \
     -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
     -D CMAKE_INSTALL_PREFIX=$PREFIX \

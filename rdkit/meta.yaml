@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2017_03
+  git_rev: Release_2017_09
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
@@ -14,15 +14,15 @@ build:
 
 requirements:
   build:
+    - conda ==4.3.25
     - cmake
     - requests
-    - boost ==1.61.0 [unix]
+    - boost ==1.63.0 [unix]
     - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - python
-    - numpy >=1.11
+    - numpy >=1.12
     - pillow
     - freetype
     - nox [unix]
@@ -32,17 +32,15 @@ requirements:
     - pandas
     - m2-patch [win]
   run:
-    - boost ==1.61.0 [unix]
+    - boost ==1.63.0 [unix]
     - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - cairo [unix]
-    - python
+    - python 
     - pillow
     - pandas
-    - numpy >=1.11
-
+    - numpy >=1.12
 test:
   imports:
     - rdkit
