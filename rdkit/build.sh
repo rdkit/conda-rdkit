@@ -1,7 +1,6 @@
 #!/bin/bash
 
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
-
 if [ "$OSX_ARCH" == "x86_64" ]; then
   export CXXFLAGS="-std=c++11 -stdlib=libc++"
 fi
@@ -28,11 +27,9 @@ cmake \
 if [[ `uname` == 'Linux' ]]; then
     make -j$CPU_COUNT 
     RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR ctest -j$CPU_COUNT --output-on-failure
-    RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR $PYTHON "$RECIPE_DIR/pkg_version.py"
 else
     make -j$CPU_COUNT install
-    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR ctest -j$CPU_COUNT --output-on-failure
-    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR $PYTHON "$RECIPE_DIR/pkg_version.py"
+    RDBASE=$SRC_DIR DYLD_FALLBACK_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib:/usr/lib" PYTHONPATH=$SRC_DIR ctest -j$CPU_COUNT --output-on-failure
 fi
 
 make install

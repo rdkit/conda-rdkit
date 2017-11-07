@@ -1,9 +1,11 @@
 package:
   name: rdkit
-  version: "__conda_version__"
+  # version is the last TAG + the number of commits since
+  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
+  # Can pull master for development
   git_rev: Release_2017_09
   patches:
     - rdpaths.patch
