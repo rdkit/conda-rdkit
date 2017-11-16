@@ -9,7 +9,10 @@
 
 echo "PREFIX: " $PREFIX
 export CFLAGS="-m64 -pipe -O2 -march=x86-64 -fPIC -shared";
-export CXXFLAGS="${CFLAGS}"
+export CXXFLAGS="-std=c++14 ${CFLAGS}"
+if [ "$OSX_ARCH" == "x86_64" ]; then
+  export CXXFLAGS="-stdlib=libc++ ${CXXFLAGS}"
+fi
 
 export BZIP2_INCLUDE="${PREFIX}/include"
 export BZIP2_LIBPATH="${PREFIX}/lib"

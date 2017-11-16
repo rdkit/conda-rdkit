@@ -1,8 +1,9 @@
 #!/bin/bash
 
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
+export CXXFLAGS="-std=c++14"
 if [ "$OSX_ARCH" == "x86_64" ]; then
-  export CXXFLAGS="-std=c++11 -stdlib=libc++"
+  export CXXFLAGS="-stdlib=libc++ ${CXXFLAGS}"
 fi
 cmake \
     -D RDK_INSTALL_INTREE=OFF \
@@ -20,6 +21,7 @@ cmake \
     -D PYTHON_INCLUDE_DIR=${PY_INC} \
     -D PYTHON_NUMPY_INCLUDE_PATH=$SP_DIR/numpy/core/include \
     -D BOOST_ROOT=$PREFIX -D Boost_NO_SYSTEM_PATHS=ON \
+    -D Boost_ADDITIONAL_VERSIONS=1.63 \
     -D CMAKE_BUILD_TYPE=Release \
     .
 
