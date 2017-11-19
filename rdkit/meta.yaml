@@ -16,7 +16,7 @@ build:
 
 requirements:
   build:
-    - conda ==4.3.25
+    - conda
     - cmake
     - requests
     - boost ==1.63.0 [unix]
