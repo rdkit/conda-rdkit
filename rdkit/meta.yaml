@@ -24,7 +24,7 @@ requirements:
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - python
-    - numpy >=1.12
+    - numpy ==1.12
     - pillow
     - freetype
     - nox [unix]
@@ -39,7 +39,7 @@ requirements:
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - cairo [unix]
-    - python 
+    - python
     - pillow
     - pandas
     - numpy >=1.12
