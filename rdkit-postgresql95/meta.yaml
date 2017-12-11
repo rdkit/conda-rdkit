@@ -22,14 +22,14 @@ requirements:
     - m2-diffutils [win]
     - m2-patch [win]
     - rdkit >=2017.09
-    - postgresql >=9.5
+    - postgresql ==9.5
     - ncurses
     - nox [unix]
     - cairo [unix]
     - pkg-config [unix]
     - eigen
   run:
-    - postgresql >=9.5
+    - postgresql ==9.5
     - ncurses
 
 about:
