@@ -1,6 +1,6 @@
 package:
   name: rdkit-postgresql95
-  version: "__conda_version__"
+  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
@@ -22,14 +22,14 @@ requirements:
     - m2-diffutils [win]
     - m2-patch [win]
     - rdkit >=2017.09
-    - postgresql ==9.5
+    - postgresql95
     - ncurses
     - nox [unix]
     - cairo [unix]
     - pkg-config [unix]
     - eigen
   run:
-    - postgresql ==9.5
+    - postgresql95
     - ncurses
 
 about:
