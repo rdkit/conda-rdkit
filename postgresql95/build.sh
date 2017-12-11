@@ -11,7 +11,6 @@ fi
     --with-libraries=$PREFIX/lib \
     --enable-thread-safety \
     --with-readline        \
-    --with-python          \
     --with-openssl         \
     --with-libxml          \
     --with-libxslt
