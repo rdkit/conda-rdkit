@@ -1,6 +1,6 @@
 # adapted from: https://github.com/conda/conda-recipes/blob/master/cairo/meta.yaml
 package:
-  name: cairo
+  name: cairo_nox
   version: "1.14.6"
 
 build:
@@ -12,6 +12,7 @@ requirements:
   build:
     # HACK: The python dep is here to get vc features to work
     - python                  [win]
+    - gcc_linux-64 [linux]
     - pkg-config              [osx]
     - xz                      [unix]
     - freetype      2.5.*     [unix]

@@ -1,4 +1,5 @@
-export CFLAGS="-I$PREFIX/include -L$PREFIX/lib"
+source activate root
+export CFLAGS="-I$PREFIX/include -L$PREFIX/lib $CFLAGS"
 
 ./configure \
     --enable-xlib=no \

@@ -17,22 +17,24 @@ build:
 requirements:
   build:
     - requests
-    - boost ==1.63.0 [unix]
+    - gxx_linux-64 [linux]
+    - boost-cpp ==1.65.1 [unix]
+    - boost ==1.65.1 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
     - python
-    - numpy >=1.12
+    - numpy ==1.12
     - pillow
     - freetype
-    - nox [unix]
-    - cairo [unix]
+    - nox
+    - cairo_nox [unix]
     - pkg-config [unix]
     - eigen
     - pandas
     - m2-patch [win]
   run:
-    - boost ==1.63.0 [unix]
+    - boost ==1.65.1 [unix]
     - boost ==1.56.0 [win and py27]
     - boost ==1.59.0 [win and py35]
     - boost ==1.59.0 [win and py36]
