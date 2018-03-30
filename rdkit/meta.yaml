@@ -18,6 +18,7 @@ requirements:
   build:
     - requests
     - gxx_linux-64 [linux]
+    - clangxx_osx-64 [osx]
     - boost-cpp ==1.65.1 [unix]
     - boost ==1.65.1 [unix]
     - boost ==1.56.0 [win and py27]
