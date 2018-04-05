@@ -17,30 +17,29 @@ build:
 requirements:
   build:
     - requests
-    - gxx_linux-64 [linux]
-    - clangxx_osx-64 [osx]
-    - boost-cpp ==1.65.1 [unix]
-    - boost ==1.65.1 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.59.0 [win and py35]
-    - boost ==1.59.0 [win and py36]
+    - {{ compiler('cxx') }}
+    - python
+    - m2-patch [win]
+    - cmake
+  host:
+    - boost-cpp ==1.65.1
+    - boost ==1.65.1
+    - py-boost ==1.65.1
     - python
     - numpy ==1.12
     - pillow
     - freetype
     - nox
-    - cairo_nox [unix]
+    - cairo [unix]
     - pkg-config [unix]
     - eigen
     - pandas
-    - m2-patch [win]
   run:
-    - boost ==1.65.1 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.59.0 [win and py35]
-    - boost ==1.59.0 [win and py36]
-    - cairo [unix]
-    - python 
+    - boost-cpp >=1.65.1
+    - boost >=1.65.1
+    - py-boost >=1.65.1
+    - cairo
+    - python
     - pillow
     - pandas
     - numpy >=1.12
