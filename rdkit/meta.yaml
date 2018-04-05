@@ -30,7 +30,8 @@ requirements:
     - pillow
     - freetype
     - nox
-    - cairo [unix]
+    - cairo_nox [linux]
+    - cairo [not linux]
     - pkg-config [unix]
     - eigen
     - pandas
