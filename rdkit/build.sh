@@ -3,10 +3,6 @@
 source activate root
 
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
-#export CXXFLAGS="-std=c++14"
-#if [ "$OSX_ARCH" == "x86_64" ]; then
-#  export CXXFLAGS="-stdlib=libc++ ${CXXFLAGS}"
-#fi
 cmake \
     -D RDK_INSTALL_INTREE=OFF \
     -D RDK_INSTALL_STATIC_LIBS=OFF \
@@ -28,7 +24,7 @@ cmake \
 
 
 if [[ `uname` == 'Linux' ]]; then
-    make -j$CPU_COUNT 
+    make -j$CPU_COUNT
     RDBASE=$SRC_DIR LD_LIBRARY_PATH="$PREFIX/lib:$SRC_DIR/lib" PYTHONPATH=$SRC_DIR ctest -j$CPU_COUNT --output-on-failure
 else
     make -j$CPU_COUNT install
