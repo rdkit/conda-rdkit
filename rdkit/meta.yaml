@@ -22,7 +22,6 @@ requirements:
     - cmake
   host:
     - boost-cpp ==1.65.1
-    - boost ==1.65.1
     - py-boost ==1.65.1
     - python
     - numpy ==1.12
@@ -35,8 +34,6 @@ requirements:
     - eigen
     - pandas
   run:
-    - boost-cpp >=1.65.1
-    - boost >=1.65.1
     - py-boost >=1.65.1
     - cairo
     - python
