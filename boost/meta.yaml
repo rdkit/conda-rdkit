@@ -21,11 +21,11 @@ build:
 
 requirements:
     build:
-      - conda ==4.3.25
+      - conda
       - zlib
       - bzip2
       - python
-      - numpy >=1.12
+      - numpy ==1.12
     run:
       - zlib
       - bzip2
