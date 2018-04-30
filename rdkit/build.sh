@@ -1,9 +1,7 @@
 #!/bin/bash
 
+
 PY_INC=`$PYTHON -c "from distutils import sysconfig; print (sysconfig.get_python_inc(0, '$PREFIX'))"`
-if [ "$OSX_ARCH" == "x86_64" ]; then
-  export CXXFLAGS="-std=c++11 -stdlib=libc++"
-fi
 cmake \
     -D RDK_INSTALL_INTREE=OFF \
     -D RDK_INSTALL_STATIC_LIBS=OFF \

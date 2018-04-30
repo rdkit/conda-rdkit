@@ -5,8 +5,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  # Can pull master for development
-  git_rev: Release_2017_09
+  git_rev: Release_2018_03
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
@@ -16,29 +15,26 @@ build:
 
 requirements:
   build:
-    - conda
-    - cmake
     - requests
-    - boost ==1.63.0 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.59.0 [win and py35]
-    - boost ==1.59.0 [win and py36]
+    - {{ compiler('cxx') }}
+    - python
+    - m2-patch [win]
+    - cmake
+  host:
+    - boost-cpp ==1.65.1
+    - py-boost ==1.65.1
     - python
     - numpy ==1.12
     - pillow
     - freetype
-    - nox [unix]
-    - cairo [unix]
+    - nox [linux]
+    - cairo
     - pkg-config [unix]
     - eigen
     - pandas
-    - m2-patch [win]
   run:
-    - boost ==1.63.0 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.59.0 [win and py35]
-    - boost ==1.59.0 [win and py36]
-    - cairo [unix]
+    - py-boost >=1.65.1
+    - cairo
     - python
     - pillow
     - pandas
