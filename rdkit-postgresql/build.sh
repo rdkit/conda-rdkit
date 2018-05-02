@@ -1,5 +1,3 @@
-$PYTHON "$RECIPE_DIR/pkg_version.py"
-
 cd $SRC_DIR/Code/PgSQL/rdkit
 
 cmake \
