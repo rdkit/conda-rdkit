@@ -1,5 +1,9 @@
 cd $SRC_DIR/Code/PgSQL/rdkit
 
+rm -rf build # cleanup required when building variants
+mkdir build
+cd build
+
 cmake \
     -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
     -D CMAKE_INSTALL_PREFIX=$PREFIX \
@@ -8,16 +12,14 @@ cmake \
     -D RDK_BUILD_AVALON_SUPPORT=ON \
     -D RDK_BUILD_INCHI_SUPPORT=ON \
     -D RDKit_DIR=$PREFIX/lib \
-    .
+    ..
 
-make
-
-/bin/bash -e ./pgsql_install.sh
-
+make && /bin/bash -e ./pgsql_install.sh
 
 export PGPORT=54321
 export PGDATA=$SRC_DIR/pgdata
 
+rm -rf $PGDATA # cleanup required when building variants
 pg_ctl initdb
 
 # ensure that the rdkit extension is loaded at process startup
