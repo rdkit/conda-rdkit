@@ -5,19 +5,19 @@ package:
 source:
   git_url: https://github.com/rdkit/rdkit.git
   git_rev: Release_2018_03
-  patches:
-    - cmakelists.txt.patch
-    - adapter.cpp.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
+    - python
   host:
+    - boost-cpp ==1.65.1
+    - eigen
     - msys2-conda-epoch >=20160418 [win]
     - m2-msys2-runtime [win]
     - m2-libiconv [win]
@@ -25,16 +25,8 @@ requirements:
     - m2-diffutils [win]
     - m2-patch [win]
     - postgresql {{ postgresql }}
-    - rdkit >=2018.03
-    - boost-cpp ==1.65.1
-    - eigen
-    - cairo
-    - nox [linux]
   run:
     - postgresql
-    - rdkit >=2018.03
-    - libboost ==1.65.1
-    - cairo
 
 about:
   home: http://rdkit.org
