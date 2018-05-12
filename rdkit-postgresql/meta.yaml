@@ -1,32 +1,32 @@
 package:
   name: rdkit-postgresql
-  version: "__conda_version__"
+  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2017_03
-  patches:
-    - cmakelists.txt.patch
-    - adapter.cpp.patch
+  git_rev: Release_2018_03
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake
     - python
+  host:
+    - boost-cpp ==1.65.1
+    - eigen
     - msys2-conda-epoch >=20160418 [win]
     - m2-msys2-runtime [win]
     - m2-libiconv [win]
     - m2-libintl [win]
     - m2-diffutils [win]
     - m2-patch [win]
-    - postgresql >=9.4,<9.5
-    - rdkit >=2016.09
+    - postgresql {{ postgresql }}
   run:
-    - python
-    - postgresql >=9.4,<9.5
+    - postgresql
 
 about:
   home: http://rdkit.org

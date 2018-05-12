@@ -1,25 +1,39 @@
-$PYTHON "$RECIPE_DIR/pkg_version.py"
-
-cd $SRC_DIR/Code/PgSQL/rdkit
+rm -rf build # cleanup required when building variants
+mkdir build
+cd build
 
 cmake \
+    -D RDK_BUILD_PGSQL=ON \
+    -D RDK_PGSQL_STATIC=ON \
+    -D RDK_INSTALL_STATIC_LIBS=ON \
+    -D RDK_INSTALL_INTREE=OFF \
+    -D RDK_INSTALL_STATIC_LIBS=OFF \
+    -D RDK_INSTALL_DEV_COMPONENT=OFF \
+    -D RDK_BUILD_INCHI_SUPPORT=ON \
+    -D RDK_BUILD_AVALON_SUPPORT=ON \
+    -D RDK_BUILD_FREESASA_SUPPORT=ON \
+    -D RDK_USE_FLEXBISON=OFF \
+    -D RDK_BUILD_THREADSAFE_SSS=ON \
+    -D RDK_TEST_MULTITHREADED=ON \
+    -D RDK_BUILD_CPP_TESTS=OFF \
+    -D RDK_BUILD_PYTHON_WRAPPERS=OFF \
+    -D RDK_USE_BOOST_SERIALIZATION=OFF \
     -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
     -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D BOOST_ROOT=$PREFIX -D Boost_NO_SYSTEM_PATHS=ON \
     -D CMAKE_BUILD_TYPE=Release \
-    -D RDK_OPTIMIZE_NATIVE=ON \
-    -D RDK_BUILD_AVALON_SUPPORT=ON \
-    -D RDK_BUILD_INCHI_SUPPORT=ON \
-    -D RDKit_DIR=$PREFIX/lib \
-    .
+    ..
 
-make
+make -j$CPU_COUNT
+
+cd ./Code/PgSQL/rdkit
 
 /bin/bash -e ./pgsql_install.sh
-
 
 export PGPORT=54321
 export PGDATA=$SRC_DIR/pgdata
 
+rm -rf $PGDATA # cleanup required when building variants
 pg_ctl initdb
 
 # ensure that the rdkit extension is loaded at process startup
