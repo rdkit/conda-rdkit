@@ -1,6 +1,7 @@
-rm -rf build # cleanup required when building variants
-mkdir build
+mkdir -p build
 cd build
+# in case there are any old psql builds: remove them
+rm -rf Code/PgSQL
 
 cmake \
     -D RDK_BUILD_PGSQL=ON \
