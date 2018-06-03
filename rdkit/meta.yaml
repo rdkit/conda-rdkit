@@ -32,7 +32,7 @@ requirements:
     - cairo [not linux]
     - pkg-config [unix]
     - eigen
-    - pandas
+    - pandas ==0.22.0
   run:
     - py-boost >=1.65.1
     - cairo
