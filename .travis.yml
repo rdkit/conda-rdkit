@@ -30,5 +30,4 @@ script:
   - source activate base && conda build rdkit
 
 after_success:
-  - anaconda -t $CONDA_UPLOAD_TOKEN upload -u greglandrum -l nightly $HOME/miniconda/conda-bld/$TRAVIS_OS_NAME-64/rdkit*.tar.bz2
-  
+  - anaconda -t $CONDA_UPLOAD_TOKEN upload --no-progress -u rdkit -l nightly $HOME/miniconda/conda-bld/$TRAVIS_OS_NAME-64/rdkit*.tar.bz2
