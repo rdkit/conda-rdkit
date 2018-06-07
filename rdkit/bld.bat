@@ -24,6 +24,8 @@ cmake ^
     -D RDK_INSTALL_INTREE=OFF ^
     -D RDK_BUILD_INCHI_SUPPORT=ON ^
     -D RDK_BUILD_AVALON_SUPPORT=ON ^
+		-D RDK_INSTALL_DEV_COMPONENT=OFF ^
+		-D RDK_BUILD_CPP_TESTS=OFF ^
     -D RDK_USE_FLEXBISON=OFF ^
     -D Python_ADDITIONAL_VERSIONS=${PY_VER} ^
     -D PYTHON_EXECUTABLE="%PYTHON%" ^
@@ -41,7 +43,7 @@ rem extend the environment settings in preparation to tests
 set RDBASE=%SRC_DIR%
 set PYTHONPATH=%RDBASE%
 
-%MAKE_CMD% test
+ctest --output-on-failure -j%CPU_COUNT%
 %PYTHON% "%RECIPE_DIR%\pkg_version.py"
 
 %MAKE_CMD% install
