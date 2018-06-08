@@ -1,0 +1,7 @@
+postgresql:
+  - 9.5
+  - 9.6
+  - 10
+
+pin_run_as_build:
+  postgresql: x.x

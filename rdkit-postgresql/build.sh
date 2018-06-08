@@ -1,13 +1,40 @@
-$PYTHON "$RECIPE_DIR/pkg_version.py"
+mkdir -p build
+cd build
+# in case there are any old psql builds: remove them
+rm -rf Code/PgSQL
 
-cd $SRC_DIR/Code/PgSQL/rdkit
+cmake \
+    -D RDK_BUILD_PGSQL=ON \
+    -D RDK_PGSQL_STATIC=ON \
+    -D RDK_INSTALL_STATIC_LIBS=ON \
+    -D RDK_INSTALL_INTREE=OFF \
+    -D RDK_INSTALL_STATIC_LIBS=OFF \
+    -D RDK_INSTALL_DEV_COMPONENT=OFF \
+    -D RDK_BUILD_INCHI_SUPPORT=ON \
+    -D RDK_BUILD_AVALON_SUPPORT=ON \
+    -D RDK_BUILD_FREESASA_SUPPORT=ON \
+    -D RDK_USE_FLEXBISON=OFF \
+    -D RDK_BUILD_THREADSAFE_SSS=ON \
+    -D RDK_TEST_MULTITHREADED=ON \
+    -D RDK_BUILD_CPP_TESTS=OFF \
+    -D RDK_BUILD_PYTHON_WRAPPERS=OFF \
+    -D RDK_USE_BOOST_SERIALIZATION=OFF \
+    -D CMAKE_SYSTEM_PREFIX_PATH=$PREFIX \
+    -D CMAKE_INSTALL_PREFIX=$PREFIX \
+    -D BOOST_ROOT=$PREFIX -D Boost_NO_SYSTEM_PATHS=ON \
+    -D CMAKE_BUILD_TYPE=Release \
+    ..
 
-make
-make install
+make -j$CPU_COUNT
+
+cd ./Code/PgSQL/rdkit
+
+/bin/bash -e ./pgsql_install.sh
 
 export PGPORT=54321
 export PGDATA=$SRC_DIR/pgdata
 
+rm -rf $PGDATA # cleanup required when building variants
 pg_ctl initdb
 
 # ensure that the rdkit extension is loaded at process startup
@@ -16,10 +43,10 @@ echo "shared_preload_libraries = 'rdkit'" >> $PGDATA/postgresql.conf
 pg_ctl start -l $PGDATA/log.txt
 
 # wait a few seconds just to make sure that the server has started
-sleep 5
+sleep 2
 
 set +e
-make installcheck
+ctest
 check_result=$?
 set -e
 

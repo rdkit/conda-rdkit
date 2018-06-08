@@ -1,0 +1,242 @@
+# This patch needs to be applied on PostgreSQL versions <= 9.5.2
+# to enable building with VS2015
+diff -Naur src/tools/msvc/MSBuildProject.pm src/tools/msvc/MSBuildProject.pm
+--- src/tools/msvc/MSBuildProject.pm	2016-03-28 21:07:39.000000000 +0100
++++ src/tools/msvc/MSBuildProject.pm	2017-05-08 22:15:12.000000000 +0100
+@@ -465,4 +465,27 @@
+ 	return $self;
+ }
+ 
++package VC2015Project;
++
++#
++# Package that encapsulates a Visual C++ 2015 project file
++#
++
++use strict;
++use warnings;
++use base qw(VC2012Project);
++
++sub new
++{
++	my $classname = shift;
++	my $self      = $classname->SUPER::_new(@_);
++	bless($self, $classname);
++
++	$self->{vcver}           = '14.00';
++	$self->{PlatformToolset} = 'v140';
++	$self->{ToolsVersion}    = '14.0';
++
++	return $self;
++}
++
+ 1;
+diff -Naur src/tools/msvc/Solution.pm src/tools/msvc/Solution.pm
+--- src/tools/msvc/Solution.pm	2016-03-28 21:07:39.000000000 +0100
++++ src/tools/msvc/Solution.pm	2017-05-08 22:15:12.000000000 +0100
+@@ -761,6 +788,32 @@
+ 	$self->{MinimumVisualStudioVersion} = '10.0.40219.1';
+ 
+ 	return $self;
++}
++
++package VS2015Solution;
++
++#
++# Package that encapsulates a Visual Studio 2015 solution file
++#
++
++use Carp;
++use strict;
++use warnings;
++use base qw(Solution);
++
++sub new
++{
++	my $classname = shift;
++	my $self      = $classname->SUPER::_new(@_);
++	bless($self, $classname);
++
++	$self->{solutionFileVersion}        = '12.00';
++	$self->{vcver}                      = '14.00';
++	$self->{visualStudioName}           = 'Visual Studio 2015';
++	$self->{VisualStudioVersion}        = '14.0.24730.2';
++	$self->{MinimumVisualStudioVersion} = '10.0.40219.1';
++
++	return $self;
+ }
+ 
+ sub GetAdditionalHeaders
+diff -Naur src/tools/msvc/VSObjectFactory.pm src/tools/msvc/VSObjectFactory.pm
+--- src/tools/msvc/VSObjectFactory.pm	2016-03-28 21:07:39.000000000 +0100
++++ src/tools/msvc/VSObjectFactory.pm	2017-05-08 22:15:12.000000000 +0100
+@@ -49,6 +49,10 @@
+ 	{
+ 		return new VS2013Solution(@_);
+ 	}
++	elsif ($visualStudioVersion eq '14.00')
++	{
++		return new VS2015Solution(@_);
++	}
+ 	else
+ 	{
+ 		croak "The requested Visual Studio version is not supported.";
+@@ -84,6 +88,10 @@
+ 	{
+ 		return new VC2013Project(@_);
+ 	}
++	elsif ($visualStudioVersion eq '14.00')
++	{
++		return new VC2015Project(@_);
++	}
+ 	else
+ 	{
+ 		croak "The requested Visual Studio version is not supported.";
+@@ -112,11 +120,11 @@
+ sub _GetVisualStudioVersion
+ {
+ 	my ($major, $minor) = @_;
+-	if ($major > 12)
++	if ($major > 14)
+ 	{
+ 		carp
+ "The determined version of Visual Studio is newer than the latest supported version. Returning the latest supported version instead.";
+-		return '12.00';
++		return '14.00';
+ 	}
+ 	elsif ($major < 6)
+ 	{
+diff -Naur src/backend/utils/misc/help_config.c src/backend/utils/misc/help_config.c
+--- src/backend/utils/misc/help_config.c	2015-06-09 20:29:38.000000000 +0100
++++ src/backend/utils/misc/help_config.c	2017-05-08 22:15:12.000000000 +0100
+@@ -31,7 +31,7 @@
+ typedef union
+ {
+ 	struct config_generic generic;
+-	struct config_bool bool;
++	struct config_bool _bool;
+ 	struct config_real real;
+ 	struct config_int integer;
+ 	struct config_string string;
+@@ -98,7 +98,7 @@
+ 
+ 		case PGC_BOOL:
+ 			printf("BOOLEAN\t%s\t\t\t",
+-				   (structToPrint->bool.reset_val == 0) ?
++				   (structToPrint->_bool.reset_val == 0) ?
+ 				   "FALSE" : "TRUE");
+ 			break;
+ 
+diff -Naur src/port/chklocale.c src/port/chklocale.c
+--- src/port/chklocale.c	2015-06-09 20:29:38.000000000 +0100
++++ src/port/chklocale.c	2017-05-08 22:15:12.000000000 +0100
+@@ -19,6 +19,10 @@
+ #include "postgres_fe.h"
+ #endif
+ 
++#if defined(WIN32) && (_MSC_VER >= 1900)
++#include <windows.h>
++#endif
++
+ #include <locale.h>
+ #ifdef HAVE_LANGINFO_H
+ #include <langinfo.h>
+@@ -196,6 +200,16 @@
+  * locale machinery determine the code page.  See comments at IsoLocaleName().
+  * For other compilers, follow the locale's predictable format.
+  *
++ * Visual Studio 2015 should still be able to do the same, but the declaration
++ * of lc_codepage is missing in _locale_t, causing this code compilation to
++ * fail, hence this falls back instead on GetLocaleInfoEx. VS 2015 may be an
++ * exception and post-VS2015 versions should be able to handle properly the
++ * codepage number using _create_locale(). So, instead of the same logic as
++ * VS 2012 and VS 2013, this routine uses GetLocaleInfoEx to parse short
++ * locale names like "de-DE", "fr-FR", etc. If those cannot be parsed correctly
++ * process falls back to the pre-VS-2010 manual parsing done with
++ * using <Language>_<Country>.<CodePage> as a base.
++ *
+  * Returns a malloc()'d string for the caller to free.
+  */
+ static char *
+@@ -203,7 +217,7 @@
+ {
+ 	char	   *r = NULL;
+ 
+-#if (_MSC_VER >= 1700)
++#if (_MSC_VER >= 1700) && (_MSC_VER < 1900)
+ 	_locale_t	loct = NULL;
+ 
+ 	loct = _create_locale(LC_CTYPE, ctype);
+@@ -217,20 +231,40 @@
+ #else
+ 	char	   *codepage;
+ 
+-	/*
+-	 * Locale format on Win32 is <Language>_<Country>.<CodePage> . For
+-	 * example, English_United States.1252.
+-	 */
+-	codepage = strrchr(ctype, '.');
+-	if (codepage != NULL)
++#if (_MSC_VER >= 1900)
++	uint32		cp;
++	WCHAR		wctype[LOCALE_NAME_MAX_LENGTH];
++
++	memset(wctype, 0, sizeof(wctype));
++	MultiByteToWideChar(CP_ACP, 0, ctype, -1, wctype, LOCALE_NAME_MAX_LENGTH);
++
++	if (GetLocaleInfoEx(wctype,
++						LOCALE_IDEFAULTANSICODEPAGE | LOCALE_RETURN_NUMBER,
++						(LPWSTR) &cp, sizeof(cp) / sizeof(WCHAR)) > 0)
+ 	{
+-		int			ln;
+-
+-		codepage++;
+-		ln = strlen(codepage);
+-		r = malloc(ln + 3);
++		r = malloc(16);			/* excess */
+ 		if (r != NULL)
+-			sprintf(r, "CP%s", codepage);
++			sprintf(r, "CP%u", cp);
++	}
++	else
++#endif
++	{
++		/*
++		 * Locale format on Win32 is <Language>_<Country>.<CodePage> . For
++		 * example, English_United States.1252.
++		 */
++		codepage = strrchr(ctype, '.');
++		if (codepage != NULL)
++		{
++			int			ln;
++
++			codepage++;
++			ln = strlen(codepage);
++			r = malloc(ln + 3);
++			if (r != NULL)
++				sprintf(r, "CP%s", codepage);
++		}
++
+ 	}
+ #endif
+ 
+diff -Naur src/include/port.h src/include/port.h
+--- src/include/port.h	2015-06-09 20:29:38.000000000 +0100
++++ src/include/port.h	2017-05-08 22:15:12.000000000 +0100
+@@ -225,12 +214,12 @@
+ extern int	pclose_check(FILE *stream);
+ 
+ /* Global variable holding time zone information. */
+-#ifndef __CYGWIN__
+-#define TIMEZONE_GLOBAL timezone
+-#define TZNAME_GLOBAL tzname
+-#else
++#if defined(WIN32) || defined(__CYGWIN__)
+ #define TIMEZONE_GLOBAL _timezone
+ #define TZNAME_GLOBAL _tzname
++#else
++#define TIMEZONE_GLOBAL timezone
++#define TZNAME_GLOBAL tzname
+ #endif
+ 
+ #if defined(WIN32) || defined(__CYGWIN__)
