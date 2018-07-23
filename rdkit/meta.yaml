@@ -25,8 +25,9 @@ requirements:
     - m2-patch [win]
     - cmake
   host:
-    - boost-cpp ==1.65.1
-    - py-boost ==1.65.1
+    - libboost {{ libboost }}
+    - boost-cpp
+    - py-boost
     - python
     - numpy ==1.12
     - pillow
@@ -38,7 +39,8 @@ requirements:
     - eigen
     - pandas <=0.22.0
   run:
-    - py-boost ==1.65.1
+    - libboost
+    - py-boost
     - cairo
     - python
     - pillow
