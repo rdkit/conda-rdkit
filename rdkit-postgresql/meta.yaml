@@ -16,7 +16,8 @@ requirements:
     - cmake
     - python
   host:
-    - boost-cpp ==1.65.1
+    - libboost {{ libboost }}
+    - boost-cpp
     - eigen
     - msys2-conda-epoch >=20160418 [win]
     - m2-msys2-runtime [win]
