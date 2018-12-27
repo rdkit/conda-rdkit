@@ -34,7 +34,7 @@ requirements:
     - eigen
     - pandas <=0.22.0
   run:
-    - py-boost >=1.65.1
+    - py-boost ==1.65.1
     - cairo
     - python
     - pillow
