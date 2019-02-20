@@ -9,7 +9,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2018_09_1b1
+  git_rev: Release_2018_09
   patches:
     - rdpaths.patch
     - rdconfig.patch [win]
@@ -37,7 +37,7 @@ requirements:
     - cairo [not linux]
     - pkg-config [unix]
     - eigen
-    - pandas <=0.22.0
+    - pandas <=0.24.0
   run:
     - libboost
     - py-boost
