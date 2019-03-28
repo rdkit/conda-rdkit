@@ -7,6 +7,8 @@ if "%PY_VER%"=="2.7" (
 	set PYTHON_LIBRARY=python35.lib
 ) else if  "%PY_VER%"=="3.6" (
 	set PYTHON_LIBRARY=python36.lib
+) else if  "%PY_VER%"=="3.7" (
+	set PYTHON_LIBRARY=python37.lib
 ) else (
 	echo "Unexpected version of python"
 	exit 1
@@ -24,7 +26,10 @@ cmake ^
     -D RDK_INSTALL_INTREE=OFF ^
     -D RDK_BUILD_INCHI_SUPPORT=ON ^
     -D RDK_BUILD_AVALON_SUPPORT=ON ^
+    -D RDK_BUILD_CAIRO_SUPPORT=ON ^
 		-D RDK_INSTALL_DEV_COMPONENT=OFF ^
+    -D RDK_BUILD_THREADSAFE_SSS=ON ^
+    -D RDK_TEST_MULTITHREADED=ON ^
 		-D RDK_BUILD_CPP_TESTS=OFF ^
     -D RDK_USE_FLEXBISON=OFF ^
     -D Python_ADDITIONAL_VERSIONS=${PY_VER} ^
