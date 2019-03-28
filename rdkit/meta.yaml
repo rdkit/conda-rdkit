@@ -29,7 +29,7 @@ requirements:
     - boost-cpp
     - py-boost
     - python
-    - numpy ==1.12
+    - numpy
     - pillow
     - freetype
     - nox [linux]
