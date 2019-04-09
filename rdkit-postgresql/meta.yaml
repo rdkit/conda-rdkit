@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2018_03
+  git_rev: Release_2019_03
 
 build:
   number: 0
