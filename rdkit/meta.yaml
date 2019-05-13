@@ -26,7 +26,7 @@ requirements:
   host:
     - libboost {{ libboost }}
     - boost-cpp
-    - py-boost
+    - py-boost {{ libboost }}
     - python
     - numpy
     - pillow
