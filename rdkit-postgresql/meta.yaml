@@ -27,7 +27,8 @@ requirements:
     - m2-patch [win]
     - postgresql {{ postgresql }}
   run:
-    - postgresql
+    - postgresql  {{ postgresql }}
+    - libboost {{ libboost }}
 
 about:
   home: http://rdkit.org
