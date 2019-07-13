@@ -1,5 +1,6 @@
 postgresql:
   - 10
+  - 11
 
 libboost: 1.65
 
