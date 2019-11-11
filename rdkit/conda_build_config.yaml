@@ -1,0 +1,7 @@
+CONDA_BUILD_SYSROOT:
+  - /opt/MacOSX10.9.sdk   [osx]
+
+libboost: 1.67
+pin_run_as_build:
+  libboost:
+    max_pin: x.x

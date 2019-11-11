@@ -7,9 +7,26 @@ RUN \
     yum groupinstall "Development tools" -y
 
 RUN useradd rdkit
-USER rdkit
+
+RUN mkdir /home/rdkit/recipes
+WORKDIR /home/rdkit/recipes
+
+COPY boost ./boost
+COPY nox ./nox
+COPY cairo_nox ./cairo_nox
+COPY cairocffi ./cairocffi
+COPY eigen ./eigen
+COPY rdkit ./rdkit
+COPY ncurses ./ncurses
+COPY postgresql ./postgresql
+COPY rdkit-postgresql ./rdkit-postgresql
+COPY postgresql95 ./postgresql95
+COPY rdkit-postgresql95 ./rdkit-postgresql95
+
+RUN chown -R rdkit:rdkit .
 
 WORKDIR /home/rdkit
+USER rdkit
 
 RUN wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
 RUN /bin/bash ./Miniconda-latest-Linux-x86_64.sh -b -p /home/rdkit/miniconda
@@ -19,12 +36,6 @@ ENV PATH /home/rdkit/miniconda/bin:$PATH
 RUN \
     conda update conda --yes --quiet && \
     conda install jinja2 conda-build anaconda-client --yes --quiet
-
-RUN git clone https://github.com/rdkit/conda-rdkit
-
-WORKDIR conda-rdkit
-
-#RUN git checkout development
 
 # on centos6 the max path length for a unix socket is 107 characters. this
 # limit is exceeded when the postgresql build is located under the default
@@ -37,6 +48,8 @@ WORKDIR conda-rdkit
 # (as a side effect, packages will be found in /home/rdkit/bld/linux-64)
 RUN mkdir /home/rdkit/bld
 ENV CONDA_BLD_PATH /home/rdkit/bld
+
+WORKDIR /home/rdkit/recipes
 
 RUN \
     conda build boost --quiet --no-anaconda-upload && \

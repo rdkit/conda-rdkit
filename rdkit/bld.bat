@@ -5,9 +5,20 @@ if "%PY_VER%"=="2.7" (
 	set PYTHON_LIBRARY=python34.lib
 ) else if  "%PY_VER%"=="3.5" (
 	set PYTHON_LIBRARY=python35.lib
+) else if  "%PY_VER%"=="3.6" (
+	set PYTHON_LIBRARY=python36.lib
+) else if  "%PY_VER%"=="3.7" (
+	set PYTHON_LIBRARY=python37.lib
 ) else (
 	echo "Unexpected version of python"
 	exit 1
+)
+
+where jom 2> NUL
+if %ERRORLEVEL% equ 0 (
+  set MAKE_CMD=jom -j%CPU_COUNT%
+) else (
+  set MAKE_CMD=nmake
 )
 
 cmake ^
@@ -15,7 +26,13 @@ cmake ^
     -D RDK_INSTALL_INTREE=OFF ^
     -D RDK_BUILD_INCHI_SUPPORT=ON ^
     -D RDK_BUILD_AVALON_SUPPORT=ON ^
+    -D RDK_BUILD_CAIRO_SUPPORT=ON ^
+		-D RDK_INSTALL_DEV_COMPONENT=OFF ^
+    -D RDK_BUILD_THREADSAFE_SSS=ON ^
+    -D RDK_TEST_MULTITHREADED=ON ^
+		-D RDK_BUILD_CPP_TESTS=OFF ^
     -D RDK_USE_FLEXBISON=OFF ^
+    -D RDK_BUILD_YAEHMOP_SUPPORT=ON ^
     -D Python_ADDITIONAL_VERSIONS=${PY_VER} ^
     -D PYTHON_EXECUTABLE="%PYTHON%" ^
     -D PYTHON_INCLUDE_DIR="%PREFIX%\include" ^
@@ -26,14 +43,13 @@ cmake ^
     -D CMAKE_BUILD_TYPE=Release ^
     .
 
-nmake
+%MAKE_CMD%
 
 rem extend the environment settings in preparation to tests
 set RDBASE=%SRC_DIR%
 set PYTHONPATH=%RDBASE%
 
-nmake test
+ctest --output-on-failure -j%CPU_COUNT%
 %PYTHON% "%RECIPE_DIR%\pkg_version.py"
 
-nmake install
-
+%MAKE_CMD% install

@@ -1,42 +1,49 @@
 package:
   name: rdkit
-  version: "__conda_version__"
+  # This is the real version, used in releases:
+  # version is the last TAG + the number of commits since
+  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+  # This is the version used for the nightlies:
+  # version: 2019.03.1b1.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
+
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_tag: Release_2016_09_2
+  git_rev: Release_2019_09
   patches:
     - rdpaths.patch
-    - rdconfig.patch [win]
 
 build:
   number: 1
 
 requirements:
   build:
-    - cmake
     - requests
-    - boost ==1.56.0 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
-    - boost ==1.59.0 [win and py35]
+    - {{ compiler('cxx') }}
     - python
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
+    - m2-patch [win]
+    - cmake
+  host:
+    - libboost {{ libboost }}
+    - boost-cpp
+    - py-boost {{ libboost }}
+    - python
+    - numpy
     - pillow
     - freetype
-    - nox [unix]
-    - cairo [unix]
+    - nox [linux]
+    - cairo
+    - pkg-config [unix]
     - eigen
-    - pandas
+    - pandas <=0.24.0
   run:
-    - boost ==1.56.0 [unix]
-    - boost ==1.56.0 [win and py27]
-    - boost ==1.56.0 [win and py34]
-    - boost ==1.59.0 [win and py35]
-    - cairo [unix]
+    - libboost
+    - py-boost
+    - cairo
     - python
-    - numpy {{ '%s.*' % (environ.get('NPY_VER') or '1.11') }}
-
+    - pillow
+    - pandas
+    - numpy >=1.12
 test:
   imports:
     - rdkit
