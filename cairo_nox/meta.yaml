@@ -17,16 +17,16 @@ requirements:
   host:
     - pkg-config              [unix]
     - xz                      [unix]
-    - freetype      2.5.*     [unix]
-    - fontconfig    2.11.*    [linux]
-    - pixman        0.32.*
+    - freetype      2.9.*     [unix]
+    - fontconfig    2.13.*    [linux]
+    - pixman        0.38.*
     - libpng        1.6.*
     - zlib          1.2.*
   run:
-    - freetype      2.5.*     [unix]
-    - fontconfig    2.11.*    [linux]
+    - freetype      2.9.*     [unix]
+    - fontconfig    2.13.*    [linux]
     - libpng        1.6.*
-    - pixman        0.32.*
+    - pixman        0.38.*
     - zlib          1.2.*
 
 
