@@ -22,12 +22,14 @@ requirements:
     - pixman        0.38.*
     - libpng        1.6.*
     - zlib          1.2.*
+    - libxml2       2.9.*
   run:
     - freetype      2.9.*     [unix]
     - fontconfig    2.13.*    [linux]
     - libpng        1.6.*
     - pixman        0.38.*
     - zlib          1.2.*
+    - libxml2       2.9.*
 
 
 
