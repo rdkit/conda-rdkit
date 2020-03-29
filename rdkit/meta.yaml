@@ -9,7 +9,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2019_09
+  git_rev: Release_2020_03
   patches:
     - rdpaths.patch
 
