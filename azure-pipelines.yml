@@ -7,7 +7,7 @@ trigger:
 - master
 - development
 
-
+jobs:
 - job: RDKit_Ubuntu_18_04
   pool:
     vmImage: ubuntu-18.04
