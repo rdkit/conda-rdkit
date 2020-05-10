@@ -1,0 +1,13 @@
+steps:
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    sudo chown -R ${USER} ${CONDA}
+    conda config --set always_yes yes --set changeps1 no
+    conda update -q conda
+    conda install conda-build
+  displayName: Setup build environment
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    conda activate rdkit_build
+    mkdir build && cd build && \
+  displayName: Do conda build and test

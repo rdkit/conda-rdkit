@@ -7,14 +7,16 @@ trigger:
 - master
 - development
 
-pool:
-  vmImage: 'ubuntu-18.04'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- job: RDKit_Ubuntu_18_04
+  pool:
+    vmImage: ubuntu-18.04
+  strategy:
+    matrix:
+      Python37:
+        python.version: '37'
+#      Python36:
+#        python.version: '36'
+  steps:
+  - template: .azure-pipelines/rdkit_ubuntu1804_build.yml
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
