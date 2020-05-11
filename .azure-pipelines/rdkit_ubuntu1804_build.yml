@@ -11,3 +11,10 @@ steps:
     export CONDA_PY=${python_version}
     conda build rdkit
   displayName: Do conda build and test
+- bash: |
+    mkdir $(System.DefaultWorkingDirectory)/distrib/linux-64
+    cp /usr/share/miniconda/conda-bld/linux-64/rdkit*gz $(System.DefaultWorkingDirectory)/distrib/linux-64
+  displayName: Create build artifacts
+- publish: 
+  artifact: conda_build_rdkit
+
