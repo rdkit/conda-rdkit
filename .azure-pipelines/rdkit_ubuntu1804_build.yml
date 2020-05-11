@@ -16,5 +16,5 @@ steps:
     cp /usr/share/miniconda/conda-bld/linux-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/linux-64
   displayName: Create build artifacts
 - publish: $(System.DefaultWorkingDirectory)/distrib 
-  artifact: conda_build_rdkit_linux_${PYTHON_VERSION}
+  artifact: conda_build_rdkit_linux_$(python.version)
 
