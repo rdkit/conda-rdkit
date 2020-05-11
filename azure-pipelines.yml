@@ -8,17 +8,17 @@ trigger:
 - development
 
 jobs:
-- job: RDKit_Ubuntu_18_04
-  pool:
-    vmImage: ubuntu-18.04
-  strategy:
-    matrix:
-      Python37:
-        python.version: '37'
-      Python36:
-        python.version: '36'
-  steps:
-  - template: .azure-pipelines/rdkit_ubuntu1804_build.yml
+# - job: RDKit_Ubuntu_18_04
+#   pool:
+#     vmImage: ubuntu-18.04
+#   strategy:
+#     matrix:
+#       Python37:
+#         python.version: '37'
+#       Python36:
+#         python.version: '36'
+#   steps:
+#   - template: .azure-pipelines/rdkit_ubuntu1804_build.yml
 
 - job: RDKit_macOS_10_14
   pool:
