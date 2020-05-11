@@ -13,8 +13,8 @@ jobs:
     vmImage: ubuntu-18.04
   strategy:
     matrix:
-#      Python37:
-#        python.version: '37'
+      Python37:
+        python.version: '37'
       Python36:
         python.version: '36'
   steps:
