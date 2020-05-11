@@ -8,7 +8,7 @@ steps:
   displayName: Setup build environment
 - bash: |
     source ${CONDA}/etc/profile.d/conda.sh
-    export CONDA_PY=${python.version}
+    export CONDA_PY=${PYTHON_VERSION}
     conda build rdkit
   displayName: Do conda build and test
 - bash: |
@@ -16,5 +16,5 @@ steps:
     cp /usr/share/miniconda/conda-bld/linux-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/linux-64
   displayName: Create build artifacts
 - publish: $(System.DefaultWorkingDirectory)/distrib 
-  artifact: conda_build_rdkit_linux_{python.version}
+  artifact: conda_build_rdkit_linux_${PYTHON_VERSION}
 
