@@ -9,10 +9,13 @@ steps:
 - bash: |
     source ${CONDA}/etc/profile.d/conda.sh
     export CONDA_PY=${PYTHON_VERSION}
+    sed -i 's/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
     conda build rdkit
   displayName: Do conda build and test
 - bash: |
     mkdir -p $(System.DefaultWorkingDirectory)/distrib/linux-64
+    echo "-----------------"
+    ls -l /usr/share/miniconda/conda-bld/linux-64/rdkit*
     cp /usr/share/miniconda/conda-bld/linux-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/linux-64
   displayName: Create build artifacts
 - publish: $(System.DefaultWorkingDirectory)/distrib 
