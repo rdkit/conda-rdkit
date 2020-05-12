@@ -1,18 +1,16 @@
 steps:
 - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
-  displayName: Setup build environment
-
-- bash: |
-    source ${CONDA}/etc/profile.d/conda.sh
-    sudo chown -R ${USER} ${CONDA}
+  displayName: Setup windows path
+- script: |
     conda config --set always_yes yes --set changeps1 no
     conda update -q conda
     conda install conda-build
   displayName: Setup build environment
 - bash: |
-    source ${CONDA}/etc/profile.d/conda.sh
     export CONDA_PY=${PYTHON_VERSION}
     sed -i '.bak' 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
+    echo "conda: "
+    echo `type conda`
     # conda build rdkit
   displayName: Do conda build and test
 - bash: |
