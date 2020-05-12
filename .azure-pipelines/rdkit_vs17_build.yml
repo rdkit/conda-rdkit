@@ -1,13 +1,7 @@
 steps:
-- bash: |
-    cd /opt
-    wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX$(target_platform).sdk.tar.xz
-    tar Jxvf MacOSX$(target_platform).sdk.tar.xz
-  displayName: Install MacOSX $(target_platform) SDK
-- script: |
-    echo "Removing homebrew from Azure to avoid conflicts."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
-  displayName: Remove homebrew
+- powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+  displayName: Setup build environment
+
 - bash: |
     source ${CONDA}/etc/profile.d/conda.sh
     sudo chown -R ${USER} ${CONDA}
@@ -19,13 +13,13 @@ steps:
     source ${CONDA}/etc/profile.d/conda.sh
     export CONDA_PY=${PYTHON_VERSION}
     sed -i '.bak' 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
-    conda build rdkit
+    # conda build rdkit
   displayName: Do conda build and test
 - bash: |
-    mkdir -p $(System.DefaultWorkingDirectory)/distrib/osx-64
+    mkdir -p $(System.DefaultWorkingDirectory)/distrib/win-64
     echo "-----------------"
     ls -l /usr/local/miniconda/conda-bld/osx-64
-    cp /usr/local/miniconda/conda-bld/osx-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/osx-64
+    cp /usr/local/miniconda/conda-bld/osx-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/win-64
   displayName: Create build artifacts
 - publish: $(System.DefaultWorkingDirectory)/distrib 
   artifact: conda_build_rdkit_osx_$(python.version)
