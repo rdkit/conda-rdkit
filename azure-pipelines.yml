@@ -46,4 +46,3 @@ jobs:
       #   python.version: '36'
   steps:
   - template: .azure-pipelines/rdkit_vs17_build.yml
--
