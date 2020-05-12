@@ -1,14 +1,12 @@
 steps:
 - bash: |
+    cd /opt
     wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX$(target_platform).sdk.tar.xz
     tar Jxvf MacOSX$(target_platform).sdk.tar.xz
   displayName: Install MacOSX $(target_platform) SDK
 - script: |
     echo "Removing homebrew from Azure to avoid conflicts."
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew
-    chmod +x ~/uninstall_homebrew
-    ~/uninstall_homebrew -fq
-    rm ~/uninstall_homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
   displayName: Remove homebrew
 - bash: |
     source ${CONDA}/etc/profile.d/conda.sh
