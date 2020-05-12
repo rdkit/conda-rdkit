@@ -7,10 +7,18 @@ steps:
     conda install conda-build
   displayName: Setup build environment
 - bash: |
-    export CONDA_PY=${PYTHON_VERSION}
     sed -i 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
+  displayName: Update conda-build configuration
+- script: |
+    # this bit is from here: https://github.com/microsoft/azure-pipelines-tasks/issues/9737
+    pushd "C:\Program Files (x86)\Microsoft Visual Studio\Installer\"
+    for /f "delims=" %%x in ('.\vswhere.exe -latest -property InstallationPath') do set VSPATH=%%x
+    popd
+    call "%VSPATH%\VC\Auxiliary\Build\vcvarsall.bat" x64
+
+    set CONDA_PY=%PYTHON_VERSION%
     conda build rdkit
-  displayName: Do conda build and test
+  displayName: run conda build (hopefully)
 - bash: |
     mkdir -p $(System.DefaultWorkingDirectory)/distrib/win-64
     echo "-----------------"
