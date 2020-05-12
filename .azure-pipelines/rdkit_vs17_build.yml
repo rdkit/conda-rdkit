@@ -8,7 +8,7 @@ steps:
   displayName: Setup build environment
 - bash: |
     sed -i 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
-    sed -i 's/CPU_COUNT/NUMBER_OF_PROCESSORS/' rdkit/bld.bat
+    sed -i 's/CPU_COUNT/NUMBER_OF_PROCESSORS/; s/^ctest/rem ctest/; s/RDK_BUILD_YAEHMOP_SUPPORT=ON/RDK_BUILD_YAEHMOP_SUPPORT=OFF/' rdkit/bld.bat
   displayName: Update conda-build configuration
 - script: |
     # this bit is from here: https://github.com/microsoft/azure-pipelines-tasks/issues/9737
