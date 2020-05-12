@@ -23,7 +23,9 @@ steps:
 - bash: |
     mkdir -p $(System.DefaultWorkingDirectory)/distrib/win-64
     echo "-----------------"
+    pwd
     cp /c/Miniconda/conda-bld/win-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/win-64
+    ls -l $(System.DefaultWorkingDirectory)/distrib/*
   displayName: Create build artifacts
 - publish: $(System.DefaultWorkingDirectory)/distrib 
   artifact: conda_build_rdkit_win64_$(python.version)
