@@ -22,11 +22,10 @@ steps:
     conda build rdkit
   displayName: Do conda build and test
 - bash: |
-    mkdir -p $(System.DefaultWorkingDirectory)/distrib/osx-64
+    mkdir -p $(Build.ArtifactStagingDirectory)/osx-64
     echo "-----------------"
-    ls -l /usr/local/miniconda/conda-bld/osx-64
-    cp /usr/local/miniconda/conda-bld/osx-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/osx-64
+    cp /usr/local/miniconda/conda-bld/osx-64/rdkit* $(Build.ArtifactStagingDirectory)/osx-64
   displayName: Create build artifacts
-- publish: $(System.DefaultWorkingDirectory)/distrib 
+- publish: $(Build.ArtifactStagingDirectory) 
   artifact: conda_build_rdkit_osx_$(python.version)
 
