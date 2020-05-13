@@ -21,12 +21,11 @@ steps:
     conda build rdkit
   displayName: run conda build (hopefully)
 - bash: |
-    mkdir -p $(System.DefaultWorkingDirectory)/distrib/win-64
+    mkdir -p $(Build.ArtifactStagingDirectory)/win-64
     echo "-----------------"
     pwd
-    cp /c/Miniconda/conda-bld/win-64/rdkit* $(System.DefaultWorkingDirectory)/distrib/win-64
-    ls -l $(System.DefaultWorkingDirectory)/distrib/*
+    cp /c/Miniconda/conda-bld/win-64/rdkit* $(Build.ArtifactStagingDirectory)/win-64
+    ls -l $(Build.ArtifactStagingDirectory)/*/*
   displayName: Create build artifacts
-- publish: $(System.DefaultWorkingDirectory)/distrib 
+- publish: $(Build.ArtifactStagingDirectory)
   artifact: conda_build_rdkit_win64_$(python.version)
-
