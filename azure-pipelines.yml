@@ -29,7 +29,7 @@ jobs:
     target_platform: 10.9
   strategy:
     matrix:
-      Python37:
+      Python38:
         python.version: '38'
       Python37:
         python.version: '37'
@@ -44,7 +44,7 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
-      Python37:
+      Python38:
         python.version: '38'
       Python37:
         python.version: '37'
