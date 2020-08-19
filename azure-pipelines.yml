@@ -13,6 +13,8 @@ jobs:
     vmImage: ubuntu-18.04
   strategy:
     matrix:
+      Python38:
+        python.version: '38'
       Python37:
         python.version: '37'
       Python36:
@@ -28,6 +30,8 @@ jobs:
   strategy:
     matrix:
       Python37:
+        python.version: '38'
+      Python37:
         python.version: '37'
       Python36:
         python.version: '36'
@@ -40,6 +44,8 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
+      Python37:
+        python.version: '38'
       Python37:
         python.version: '37'
       Python36:
