@@ -35,7 +35,7 @@ requirements:
     - cairo
     - pkg-config [unix]
     - eigen
-    - pandas <=0.24.0
+    - pandas
   run:
     - libboost
     - py-boost
