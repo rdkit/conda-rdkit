@@ -17,6 +17,8 @@ steps:
 - bash: |
     source ${CONDA}/etc/profile.d/conda.sh
     export CONDA_PY=${PYTHON_VERSION}
+    export SDKROOT="$(pwd)/MacOSX$(target_platform).sdk/"
+    export CONDA_BUILD_SYSROOT=${SDKROOT}
     sed -i '.bak' 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
     sed -i '.bak' 's/^ctest/# ctest/' rdkit/build.sh
     conda build rdkit
