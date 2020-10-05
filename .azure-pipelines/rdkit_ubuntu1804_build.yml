@@ -1,0 +1,24 @@
+steps:
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    sudo chown -R ${USER} ${CONDA}
+    conda config --set always_yes yes --set changeps1 no
+    conda update -q conda
+    conda install conda-build
+  displayName: Setup build environment
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    export CONDA_PY=${PYTHON_VERSION}
+    sed -i 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
+    sed -i 's/^ctest/# ctest/' rdkit/build.sh
+    conda build rdkit
+  displayName: Do conda build and test
+- bash: |
+    mkdir -p $(Build.ArtifactStagingDirectory)/linux-64
+    echo "-----------------"
+    ls -l /usr/share/miniconda/conda-bld/linux-64/rdkit*
+    cp /usr/share/miniconda/conda-bld/linux-64/rdkit* $(Build.ArtifactStagingDirectory)/linux-64
+  displayName: Create build artifacts
+- publish: $(Build.ArtifactStagingDirectory)
+  artifact: conda_build_rdkit_linux_$(python.version)
+

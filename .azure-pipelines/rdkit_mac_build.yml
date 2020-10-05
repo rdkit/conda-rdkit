@@ -1,0 +1,32 @@
+steps:
+- bash: |
+    cd /opt
+    wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX$(target_platform).sdk.tar.xz
+    tar Jxvf MacOSX$(target_platform).sdk.tar.xz
+  displayName: Install MacOSX $(target_platform) SDK
+- script: |
+    echo "Removing homebrew from Azure to avoid conflicts."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
+  displayName: Remove homebrew
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    sudo chown -R ${USER} ${CONDA}
+    conda config --set always_yes yes --set changeps1 no
+    conda update -q conda
+    conda install conda-build
+  displayName: Setup build environment
+- bash: |
+    source ${CONDA}/etc/profile.d/conda.sh
+    export CONDA_PY=${PYTHON_VERSION}
+    sed -i '.bak' 's/git_rev: Release_2020_03/git_rev: master/; s/^  version:/# version;/; s/# nightly version:/version:/' rdkit/meta.yaml
+    sed -i '.bak' 's/^ctest/# ctest/' rdkit/build.sh
+    conda build rdkit
+  displayName: Do conda build and test
+- bash: |
+    mkdir -p $(Build.ArtifactStagingDirectory)/osx-64
+    echo "-----------------"
+    cp /usr/local/miniconda/conda-bld/osx-64/rdkit* $(Build.ArtifactStagingDirectory)/osx-64
+  displayName: Create build artifacts
+- publish: $(Build.ArtifactStagingDirectory) 
+  artifact: conda_build_rdkit_osx_$(python.version)
+

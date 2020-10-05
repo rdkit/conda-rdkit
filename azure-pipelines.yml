@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+- development
+
+jobs:
+- job: RDKit_Ubuntu_18_04
+  pool:
+    vmImage: ubuntu-18.04
+  strategy:
+    matrix:
+      Python37:
+        python.version: '37'
+      Python36:
+        python.version: '36'
+  steps:
+  - template: .azure-pipelines/rdkit_ubuntu1804_build.yml
+
+- job: RDKit_macOS_10_14
+  pool:
+    vmImage: macos-10.14
+  variables:
+    target_platform: 10.9
+  strategy:
+    matrix:
+      Python37:
+        python.version: '37'
+      Python36:
+        python.version: '36'
+  steps:
+  - template: .azure-pipelines/rdkit_mac_build.yml
+
+- job: Windows_VS2017_x64
+  timeoutInMinutes: 90
+  pool:
+    vmImage: vs2017-win2016
+  strategy:
+    matrix:
+      Python37:
+        python.version: '37'
+      Python36:
+        python.version: '36'
+  steps:
+  - template: .azure-pipelines/rdkit_vs17_build.yml
