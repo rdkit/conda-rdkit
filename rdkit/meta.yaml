@@ -2,9 +2,10 @@ package:
   name: rdkit
   # This is the real version, used in releases:
   # version is the last TAG + the number of commits since
-  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+  # version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
   # This is the version used for the nightlies:
   # nightly version: 2020.09.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
+  version: 2020.09.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
 
 
 source:
