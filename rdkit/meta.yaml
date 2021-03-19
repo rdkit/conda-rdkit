@@ -5,7 +5,7 @@ package:
   # version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
   # This is the version used for the nightlies:
   # nightly version: 2020.09.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
-  version: 2020.09.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
+  version: 2021.03.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
 
 
 source:
@@ -36,7 +36,7 @@ requirements:
     - cairo
     - pkg-config [unix]
     - eigen
-    - pandas <=0.24.0
+    - pandas
   run:
     - libboost
     - py-boost
