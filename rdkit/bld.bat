@@ -1,14 +1,12 @@
 rem surely there's a better way than this
-if "%PY_VER%"=="2.7" (
-	set PYTHON_LIBRARY=python27.lib
-) else if  "%PY_VER%"=="3.4" (
-	set PYTHON_LIBRARY=python34.lib
-) else if  "%PY_VER%"=="3.5" (
-	set PYTHON_LIBRARY=python35.lib
-) else if  "%PY_VER%"=="3.6" (
+if  "%PY_VER%"=="3.6" (
 	set PYTHON_LIBRARY=python36.lib
 ) else if  "%PY_VER%"=="3.7" (
 	set PYTHON_LIBRARY=python37.lib
+) else if  "%PY_VER%"=="3.8" (
+	set PYTHON_LIBRARY=python38.lib
+) else if  "%PY_VER%"=="3.9" (
+	set PYTHON_LIBRARY=python39.lib
 ) else (
 	echo "Unexpected version of python"
 	exit 1
