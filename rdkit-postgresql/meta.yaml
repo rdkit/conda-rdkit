@@ -4,7 +4,7 @@ package:
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2020_03
+  git_rev: Release_2021_03
 
 build:
   number: 0
@@ -26,9 +26,11 @@ requirements:
     - m2-diffutils [win]
     - m2-patch [win]
     - postgresql {{ postgresql }}
+    - freetype
   run:
     - postgresql  {{ postgresql }}
     - libboost {{ libboost }}
+    - freetype
 
 about:
   home: http://rdkit.org

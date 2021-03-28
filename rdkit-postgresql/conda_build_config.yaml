@@ -1,9 +1,9 @@
 postgresql:
-  - 9.6
   - 10
   - 11
+  - 12
 
-libboost: 1.67
+libboost: 1.73
 
 pin_run_as_build:
   postgresql: x.x
