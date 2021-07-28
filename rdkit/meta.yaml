@@ -4,13 +4,14 @@ package:
   # version is the last TAG + the number of commits since
   # version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
   # This is the version used for the nightlies:
-  # nightly version: 2021.03.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
-  version: 2021.03.1.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
+  version: 2021.09.1b.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
+  # version: 2021.03.1.{{ environ.get('GIT_DESCRIBE_NUMBER', 1) }}
 
 
 source:
   git_url: https://github.com/rdkit/rdkit.git
-  git_rev: Release_2021_03
+  #git_rev: Release_2021_03
+  git_rev: master
   patches:
     - rdpaths.patch
 
