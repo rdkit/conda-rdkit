@@ -1,7 +1,11 @@
 Conda recipes for the RDKit
 ###########################
 
-This repository provides the recipes for building binary `RDKit <http://rdkit.org>`_ packages to be used with the Anaconda Python distribution or other conda environments.
+NOTE
+====
+
+This repo is now only used to provide the occasional nightly or beta build of the RDKit. Production RDKit conda builds are provided by [conda-forge](https://anaconda.org/conda-forge/rdkit)
+
 
 Conda
 =====
